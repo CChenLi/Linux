@@ -1,0 +1,583 @@
+Chen Li
+705426669
+Assignment 1
+Lab
+--------------
+
+1. man -k KEY_WORD
+
+2. mv:
+   /usr/local/cs/bin/mv  
+   /bin/mv
+
+   Shell Commands Used:
+   which mv -a
+   
+   sh:
+   /bin/sh                   
+   
+   Shell Commands Used:
+   which sh -a
+
+3. /usr/bin/ar
+   /usr/bin/pr
+   /usr/bin/tr               
+   
+   Shell Commands Used:
+   find /usr/bin/[a-z]r -executable
+
+4. /usr/bin/emacs-23.1
+   
+   Shell command used:
+   ls -l /usr/bin/emacs
+   ls -l /etc/alternatives/emacs
+   ls -l /usr/bin/emacs-23.1
+
+5. which gcc -a       //produce two path 
+      /usr/local/cs/bin/gcc
+      /usr/bin/gcc
+   
+   plain gcc:
+   4.9.2                     
+   Shell command used:
+   gcc -v
+
+   /usr/local/cs/bin/gcc
+   4.4.7                     
+   Shell command used:
+   /usr/bin/gcc -v
+
+6. add execute permission to user and set user ID on execution
+   delete write permission from others
+
+7. 
+/usr/local/cs
+/usr/local/cs/src/git
+/usr/local/cs/src/git/RCS
+/usr/local/cs/src/coreutils
+/usr/local/cs/src/coreutils/RCS
+/usr/local/cs/src/gcc
+/usr/local/cs/src/gcc/RCS
+/usr/local/cs/src/gdb
+/usr/local/cs/src/gdb/RCS
+/usr/local/cs/src/go
+/usr/local/cs/src/go/RCS
+/usr/local/cs/src/ocaml
+/usr/local/cs/src/ocaml/RCS
+/usr/local/cs/src/tar
+/usr/local/cs/src/tar/RCS
+/usr/local/cs/include/c++
+/usr/local/cs/lib64
+/usr/local/cs/share
+/usr/local/cs/share/info
+/usr/local/cs/share/man/man1
+/usr/local/cs/share/man/man7
+/usr/local/cs/share/man/man5
+/usr/local/cs/share/man/man3
+/usr/local/cs/bin
+/usr/local/cs/bin/.del
+/usr/local/cs/lib
+/usr/local/cs/lib/gcc/x86_64-pc-linux-gnu
+/usr/local/cs/libexec/gcc/x86_64-pc-linux-gnu
+/usr/local/cs/gdb-9.1
+/usr/local/cs/gdb-9.1/include
+/usr/local/cs/gdb-9.1/include/gdb
+/usr/local/cs/gdb-9.1/lib
+/usr/local/cs/gdb-9.1/share
+/usr/local/cs/gdb-9.1/share/info
+/usr/local/cs/gdb-9.1/share/gdb
+/usr/local/cs/gdb-9.1/share/gdb/python
+/usr/local/cs/gdb-9.1/share/gdb/python/gdb
+/usr/local/cs/gdb-9.1/share/gdb/python/gdb/command
+/usr/local/cs/gdb-9.1/share/gdb/python/gdb/function
+/usr/local/cs/gdb-9.1/share/gdb/python/gdb/printer
+/usr/local/cs/gdb-9.1/share/gdb/syscalls
+/usr/local/cs/gdb-9.1/share/gdb/system-gdbinit
+/usr/local/cs/gdb-9.1/share/man
+/usr/local/cs/gdb-9.1/share/man/man5
+/usr/local/cs/gdb-9.1/share/man/man1
+/usr/local/cs/gdb-9.1/bin
+/usr/local/cs/.del
+/usr/local/cs/.del/gdb-8.3.1-wrong-python
+/usr/local/cs/.del/gdb-8.3.1
+/usr/local/cs/.del/ocaml-4.09.0
+/usr/local/cs/.del/Python-3.8.0
+/usr/local/cs/.del/coreutils-8.31
+/usr/local/cs/.del/git-2.24.0
+/usr/local/cs/.del/tar-1.30
+/usr/local/cs/ocaml-4.10.0
+/usr/local/cs/ocaml-4.10.0/bin
+/usr/local/cs/ocaml-4.10.0/lib
+/usr/local/cs/ocaml-4.10.0/lib/ocaml
+/usr/local/cs/ocaml-4.10.0/lib/ocaml/stublibs
+/usr/local/cs/ocaml-4.10.0/lib/ocaml/compiler-libs
+/usr/local/cs/ocaml-4.10.0/lib/ocaml/caml
+/usr/local/cs/ocaml-4.10.0/lib/ocaml/threads
+/usr/local/cs/ocaml-4.10.0/lib/ocaml/ocamldoc
+/usr/local/cs/ocaml-4.10.0/man
+/usr/local/cs/ocaml-4.10.0/man/man1
+/usr/local/cs/ocaml-4.10.0/man/man3
+/usr/local/cs/coreutils-8.32
+/usr/local/cs/coreutils-8.32/share
+/usr/local/cs/coreutils-8.32/share/locale
+/usr/local/cs/coreutils-8.32/share/locale/af
+/usr/local/cs/coreutils-8.32/share/locale/af/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/af/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/be
+/usr/local/cs/coreutils-8.32/share/locale/be/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/be/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/bg
+/usr/local/cs/coreutils-8.32/share/locale/bg/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/bg/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ca
+/usr/local/cs/coreutils-8.32/share/locale/ca/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ca/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/cs
+/usr/local/cs/coreutils-8.32/share/locale/cs/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/cs/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/da
+/usr/local/cs/coreutils-8.32/share/locale/da/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/da/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/de
+/usr/local/cs/coreutils-8.32/share/locale/de/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/de/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/el
+/usr/local/cs/coreutils-8.32/share/locale/el/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/el/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/eo
+/usr/local/cs/coreutils-8.32/share/locale/eo/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/eo/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/es
+/usr/local/cs/coreutils-8.32/share/locale/es/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/es/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/et
+/usr/local/cs/coreutils-8.32/share/locale/et/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/et/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/eu
+/usr/local/cs/coreutils-8.32/share/locale/eu/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/eu/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/fi
+/usr/local/cs/coreutils-8.32/share/locale/fi/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/fi/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/fr
+/usr/local/cs/coreutils-8.32/share/locale/fr/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/fr/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ga
+/usr/local/cs/coreutils-8.32/share/locale/ga/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ga/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/gl
+/usr/local/cs/coreutils-8.32/share/locale/gl/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/gl/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/hr
+/usr/local/cs/coreutils-8.32/share/locale/hr/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/hr/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/hu
+/usr/local/cs/coreutils-8.32/share/locale/hu/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/hu/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ia
+/usr/local/cs/coreutils-8.32/share/locale/ia/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ia/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/id
+/usr/local/cs/coreutils-8.32/share/locale/id/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/id/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/it
+/usr/local/cs/coreutils-8.32/share/locale/it/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/it/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ja
+/usr/local/cs/coreutils-8.32/share/locale/ja/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ja/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/kk
+/usr/local/cs/coreutils-8.32/share/locale/kk/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/kk/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ko
+/usr/local/cs/coreutils-8.32/share/locale/ko/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ko/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/lg
+/usr/local/cs/coreutils-8.32/share/locale/lg/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/lg/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/lt
+/usr/local/cs/coreutils-8.32/share/locale/lt/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/lt/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ms
+/usr/local/cs/coreutils-8.32/share/locale/ms/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ms/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/nb
+/usr/local/cs/coreutils-8.32/share/locale/nb/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/nb/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/nl
+/usr/local/cs/coreutils-8.32/share/locale/nl/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/nl/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/pl
+/usr/local/cs/coreutils-8.32/share/locale/pl/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/pl/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/pt
+/usr/local/cs/coreutils-8.32/share/locale/pt/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/pt/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/pt_BR
+/usr/local/cs/coreutils-8.32/share/locale/pt_BR/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/pt_BR/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ro
+/usr/local/cs/coreutils-8.32/share/locale/ro/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ro/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/ru
+/usr/local/cs/coreutils-8.32/share/locale/ru/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/ru/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/sk
+/usr/local/cs/coreutils-8.32/share/locale/sk/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/sk/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/sl
+/usr/local/cs/coreutils-8.32/share/locale/sl/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/sl/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/sr
+/usr/local/cs/coreutils-8.32/share/locale/sr/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/sr/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/sv
+/usr/local/cs/coreutils-8.32/share/locale/sv/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/sv/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/tr
+/usr/local/cs/coreutils-8.32/share/locale/tr/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/tr/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/uk
+/usr/local/cs/coreutils-8.32/share/locale/uk/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/uk/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/vi
+/usr/local/cs/coreutils-8.32/share/locale/vi/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/vi/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/zh_CN
+/usr/local/cs/coreutils-8.32/share/locale/zh_CN/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/zh_CN/LC_TIME
+/usr/local/cs/coreutils-8.32/share/locale/zh_TW
+/usr/local/cs/coreutils-8.32/share/locale/zh_TW/LC_MESSAGES
+/usr/local/cs/coreutils-8.32/share/locale/zh_TW/LC_TIME
+/usr/local/cs/coreutils-8.32/share/info
+/usr/local/cs/coreutils-8.32/share/man
+/usr/local/cs/coreutils-8.32/share/man/man1
+/usr/local/cs/coreutils-8.32/bin
+/usr/local/cs/coreutils-8.32/libexec
+/usr/local/cs/coreutils-8.32/libexec/coreutils
+/usr/local/cs/gcc-9.3.0
+/usr/local/cs/gcc-9.3.0/libexec
+/usr/local/cs/gcc-9.3.0/libexec/gcc
+/usr/local/cs/gcc-9.3.0/libexec/gcc/x86_64-pc-linux-gnu
+/usr/local/cs/gcc-9.3.0/libexec/gcc/x86_64-pc-linux-gnu/9.3.0
+/usr/local/cs/gcc-9.3.0/libexec/gcc/x86_64-pc-linux-gnu/9.3.0/install-tools
+/usr/local/cs/gcc-9.3.0/libexec/gcc/x86_64-pc-linux-gnu/9.3.0/plugin
+/usr/local/cs/gcc-9.3.0/lib
+/usr/local/cs/gcc-9.3.0/lib/gcc
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/install-tools
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/install-tools/include
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/finclude
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include/sanitizer
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include/ssp
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include/objc
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/nss3
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/net-snmp
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/net-snmp/library
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/net-snmp/agent
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/net-snmp/agent/util_funcs
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/X11
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/linux
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed/openssl
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/cp
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/c-family
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/config
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/config/i386
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/ada
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/ada/gcc-interface
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/d
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/plugin/include/objc
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/32
+/usr/local/cs/gcc-9.3.0/lib/gcc/x86_64-pc-linux-gnu/9.3.0/32/finclude
+/usr/local/cs/gcc-9.3.0/bin
+/usr/local/cs/gcc-9.3.0/include
+/usr/local/cs/gcc-9.3.0/include/c++
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/bits
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/backward
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/pairing_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/splay_tree_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/list_update_map_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/branch_policy
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/trie_policy
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/gp_hash_table_map_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/tree_policy
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/binomial_heap_base_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/resize_policy
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/bin_search_tree_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/binomial_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/thin_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/pat_trie_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/cc_hash_table_map_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/rc_binomial_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/left_child_next_sibling_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/unordered_iterator
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/binary_heap_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/ov_tree_map_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/hash_fn
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/eq_fn
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/rb_tree_map_
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/ext/pb_ds/detail/list_update_policy
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/tr1
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/tr2
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/decimal
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/experimental
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/experimental/bits
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/debug
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/parallel
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/profile
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/profile/impl
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu/bits
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu/ext
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu/32
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu/32/bits
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/x86_64-pc-linux-gnu/32/ext
+/usr/local/cs/gcc-9.3.0/include/c++/9.3.0/pstl
+/usr/local/cs/gcc-9.3.0/share
+/usr/local/cs/gcc-9.3.0/share/info
+/usr/local/cs/gcc-9.3.0/share/man
+/usr/local/cs/gcc-9.3.0/share/man/man1
+/usr/local/cs/gcc-9.3.0/share/man/man7
+/usr/local/cs/gcc-9.3.0/share/gcc-9.3.0
+/usr/local/cs/gcc-9.3.0/share/gcc-9.3.0/python
+/usr/local/cs/gcc-9.3.0/share/gcc-9.3.0/python/libstdcxx
+/usr/local/cs/gcc-9.3.0/share/gcc-9.3.0/python/libstdcxx/v6
+/usr/local/cs/gcc-9.3.0/lib64
+/usr/local/cs/git-2.26.0
+/usr/local/cs/git-2.26.0/bin
+/usr/local/cs/git-2.26.0/libexec
+/usr/local/cs/git-2.26.0/libexec/git-core
+/usr/local/cs/git-2.26.0/libexec/git-core/mergetools
+/usr/local/cs/git-2.26.0/share
+/usr/local/cs/git-2.26.0/share/git-core
+/usr/local/cs/git-2.26.0/share/git-core/templates
+/usr/local/cs/git-2.26.0/share/git-core/templates/info
+/usr/local/cs/git-2.26.0/share/git-core/templates/hooks
+/usr/local/cs/git-2.26.0/share/git-core/templates/branches
+/usr/local/cs/git-2.26.0/share/locale
+/usr/local/cs/git-2.26.0/share/locale/zh_TW
+/usr/local/cs/git-2.26.0/share/locale/zh_TW/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/zh_CN
+/usr/local/cs/git-2.26.0/share/locale/zh_CN/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/vi
+/usr/local/cs/git-2.26.0/share/locale/vi/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/tr
+/usr/local/cs/git-2.26.0/share/locale/tr/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/sv
+/usr/local/cs/git-2.26.0/share/locale/sv/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/is
+/usr/local/cs/git-2.26.0/share/locale/is/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/pt_PT
+/usr/local/cs/git-2.26.0/share/locale/pt_PT/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/it
+/usr/local/cs/git-2.26.0/share/locale/it/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/ko
+/usr/local/cs/git-2.26.0/share/locale/ko/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/ru
+/usr/local/cs/git-2.26.0/share/locale/ru/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/fr
+/usr/local/cs/git-2.26.0/share/locale/fr/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/es
+/usr/local/cs/git-2.26.0/share/locale/es/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/ca
+/usr/local/cs/git-2.26.0/share/locale/ca/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/el
+/usr/local/cs/git-2.26.0/share/locale/el/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/de
+/usr/local/cs/git-2.26.0/share/locale/de/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/locale/bg
+/usr/local/cs/git-2.26.0/share/locale/bg/LC_MESSAGES
+/usr/local/cs/git-2.26.0/share/perl5
+/usr/local/cs/git-2.26.0/share/perl5/FromCPAN
+/usr/local/cs/git-2.26.0/share/perl5/FromCPAN/Mail
+/usr/local/cs/git-2.26.0/share/perl5/Git
+/usr/local/cs/git-2.26.0/share/perl5/Git/LoadCPAN
+/usr/local/cs/git-2.26.0/share/perl5/Git/LoadCPAN/Mail
+/usr/local/cs/git-2.26.0/share/perl5/Git/SVN
+/usr/local/cs/git-2.26.0/share/perl5/Git/SVN/Memoize
+/usr/local/cs/git-2.26.0/share/gitweb
+/usr/local/cs/git-2.26.0/share/gitweb/static
+/usr/local/cs/git-2.26.0/share/gitk
+/usr/local/cs/git-2.26.0/share/gitk/lib
+/usr/local/cs/git-2.26.0/share/gitk/lib/msgs
+/usr/local/cs/git-2.26.0/share/git-gui
+/usr/local/cs/git-2.26.0/share/git-gui/lib
+/usr/local/cs/git-2.26.0/share/git-gui/lib/msgs
+/usr/local/cs/tar-1.32
+/usr/local/cs/tar-1.32/share
+/usr/local/cs/tar-1.32/share/man
+/usr/local/cs/tar-1.32/share/man/man1
+/usr/local/cs/tar-1.32/share/man/man8
+/usr/local/cs/tar-1.32/share/info
+/usr/local/cs/tar-1.32/share/locale
+/usr/local/cs/tar-1.32/share/locale/bg
+/usr/local/cs/tar-1.32/share/locale/bg/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ca
+/usr/local/cs/tar-1.32/share/locale/ca/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/cs
+/usr/local/cs/tar-1.32/share/locale/cs/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/da
+/usr/local/cs/tar-1.32/share/locale/da/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/de
+/usr/local/cs/tar-1.32/share/locale/de/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/el
+/usr/local/cs/tar-1.32/share/locale/el/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/eo
+/usr/local/cs/tar-1.32/share/locale/eo/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/es
+/usr/local/cs/tar-1.32/share/locale/es/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/et
+/usr/local/cs/tar-1.32/share/locale/et/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/eu
+/usr/local/cs/tar-1.32/share/locale/eu/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/fi
+/usr/local/cs/tar-1.32/share/locale/fi/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/fr
+/usr/local/cs/tar-1.32/share/locale/fr/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ga
+/usr/local/cs/tar-1.32/share/locale/ga/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/gl
+/usr/local/cs/tar-1.32/share/locale/gl/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/hr
+/usr/local/cs/tar-1.32/share/locale/hr/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/hu
+/usr/local/cs/tar-1.32/share/locale/hu/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/id
+/usr/local/cs/tar-1.32/share/locale/id/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/it
+/usr/local/cs/tar-1.32/share/locale/it/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ja
+/usr/local/cs/tar-1.32/share/locale/ja/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ko
+/usr/local/cs/tar-1.32/share/locale/ko/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ky
+/usr/local/cs/tar-1.32/share/locale/ky/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ms
+/usr/local/cs/tar-1.32/share/locale/ms/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/nb
+/usr/local/cs/tar-1.32/share/locale/nb/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/nl
+/usr/local/cs/tar-1.32/share/locale/nl/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/pl
+/usr/local/cs/tar-1.32/share/locale/pl/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/pt
+/usr/local/cs/tar-1.32/share/locale/pt/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/pt_BR
+/usr/local/cs/tar-1.32/share/locale/pt_BR/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ro
+/usr/local/cs/tar-1.32/share/locale/ro/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/ru
+/usr/local/cs/tar-1.32/share/locale/ru/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/sk
+/usr/local/cs/tar-1.32/share/locale/sk/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/sl
+/usr/local/cs/tar-1.32/share/locale/sl/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/sr
+/usr/local/cs/tar-1.32/share/locale/sr/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/sv
+/usr/local/cs/tar-1.32/share/locale/sv/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/tr
+/usr/local/cs/tar-1.32/share/locale/tr/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/uk
+/usr/local/cs/tar-1.32/share/locale/uk/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/vi
+/usr/local/cs/tar-1.32/share/locale/vi/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/zh_CN
+/usr/local/cs/tar-1.32/share/locale/zh_CN/LC_MESSAGES
+/usr/local/cs/tar-1.32/share/locale/zh_TW
+/usr/local/cs/tar-1.32/share/locale/zh_TW/LC_MESSAGES
+/usr/local/cs/tar-1.32/libexec
+/usr/local/cs/tar-1.32/bin
+
+
+
+
+find /usr/local/cs -type d -mtime 27
+
+8. 20 for /bin/find
+   350 for /usr/bin/find
+
+   Shell command used:
+   which find -a               returns two paths
+   find /bin -type l | wc -l
+   find /usr/bin -type l | wc -l
+
+9. librom1394.so.0.3.0
+   the file type start with "-", so its indeed a regular file
+	
+   Shell command used:
+   ls -lat /usr/lib64
+
+10. From man, where the locale command get its data from depends the setting in profile  file
+
+	Shell command used:
+	man locale
+
+11. downcase-dwim  
+	downcase-region
+	downcase-word 
+
+	Emacs command used:
+	C-h a KEY_WORD
+
+12. 
+    C-M-r           isearch-backward-regexp, Begin reverse incremental regexp search
+    C-M-s           isearch-forward-regexp, Begin incremental regexp search
+    C-M-t           transpose-sexps, Transpose two balanced expressions
+    C-M-u           backward-up-list, Move up in parenthesis structure
+    C-M-v           scroll-other-window
+
+    Emacs command used:
+    C-h ?    for further help
+    C-h b    search key binding
+    C-x o	 switch to help window and look for C-M
+
+13. keyboard-quit, Signal a `quit' condition.
+	When in a Lisp, C-g quit Emacs immediately, and return control to command.
+	However, if command loop is waiting for a keyboard input, C-g would be read as an input.
+
+	Emacs command used:
+	C-h b    for key binding
+	C-s C-g  for search
+
+14. Reinsert ("paste") the last stretch of killed text.
+	C-y
+
+	Emacs command used:
+	C-h a yank         search for yank
+	C-h b C-s yank     search for key-binding
+
+15. 
+dired                         <menu-bar> <file> <dired>, C-x d
+   "Edit" directory DIRNAME--delete, rename, print, etc. some files in
+   it.
+
+   The first line of dired is "total used in directory 395680 available 2644272"
+   The first line of ls -l is "total 395576"
+   dired print available whereas ls -l not
+
+   Command:
+   ls -l /bin/usr
+
+   C-h a dired
+   C-h b
+   C-s dired
+   C-x d /usr/bin
+
+
+
+
+
+
+
+
+

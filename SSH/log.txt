@@ -1,0 +1,40 @@
+[classkyb@lnxsrv09 ~]$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/u/eng/class/classkyb/.ssh/id_rsa): 
+/u/eng/class/classkyb/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /u/eng/class/classkyb/.ssh/id_rsa.
+Your public key has been saved in /u/eng/class/classkyb/.ssh/id_rsa.pub.
+The key fingerprint is:
+...
+
+[classkyb@lnxsrv09 ~]$ ssh-copy-id classkyb@lnxsrv10.seas.ucla.edu
+classkyb@lnxsrv10.seas.ucla.edu's password: 
+Number of key(s) added: 1
+Now try logging into the machine, with:   "ssh 'classkyb@lnxsrv10.seas.ucla.edu'"
+and check to make sure that only the key(s) you wanted were added.
+
+[classkyb@lnxsrv09 ~]$ ssh classkyb@lnxsrv10.seas.ucla.edu
+Enter passphrase for key '/u/eng/class/classkyb/.ssh/id_rsa': 
+
+exit
+
+[classkyb@lnxsrv09 ~]$ eval `ssh-agent`
+[classkyb@lnxsrv09 ~]$ ssh-add
+Enter passphrase for /u/eng/class/classkyb/.ssh/id_rsa: 
+Identity added: /u/eng/class/classkyb/.ssh/id_rsa (/u/eng/class/classkyb/.ssh/id_rsa)
+
+[classkyb@lnxsrv09 ~]$ ssh classkyb@lnxsrv10.seas.ucla.edu
+Last login: Fri Apr 10 13:28:05 2020 from lnxsrv09.seas.ucla.edu
+exit
+
+[classkyb@lnxsrv09 ~]$ ssh -XA classkyb@lnxsrv10.seas.ucla.edu
+Last login: Fri Apr 10 13:53:47 2020 from lnxsrv10.seas.ucla.edu
+
+[classkyb@lnxsrv10 ~]$ ssh -XA classkyb@lnxsrv07.seas.ucla.edu
+Last login: Wed Apr  8 15:16:03 2020 from lnxsrv10.seas.ucla.edu
+
+xeyes
+//xeyes appear on topleft

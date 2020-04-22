@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+# Check arg num-------------------------------------
+if [ $# -eq 0 ]; then
+    arg=.
+    REC=false
+    Current=`pwd`
+    Append=`basename "$Current"`
+fi
+
+if [ $# -eq 1 ]; then
+    if [ $1 == '-r' ]; then
+	arg=.
+	REC=true
+	Current=`pwd`
+	Append=`basename "$Current"`
+    else
+	arg=$1
+	REC=false
+	Append=$arg
+    fi
+fi
+
+if [ $# -gt 1 ]; then
+    if [ $1 == "-r" ] && [ $# -eq 2 ] ; then
+	arg=$2
+	REC=true
+	Append=$arg
+    else
+	>&2 echo ERROR: only 1 operand is allowed
+	exit 1
+    fi
+fi
+
+#Check D------------------------------------------------
+if [ ! -d $arg ]; then
+    >&2 echo ERROR: operand is not a directory!
+    exit 1
+fi
+
+if [ -h $arg ]; then
+    >&2 echo ERROR: operand is a symbulic link!
+    exit 1
+fi
+
+if [ ! -r $arg ]; then
+    >&2 echo ERROR: permission denied!
+    exit 1
+fi
+
+# The following function doesn't work, and I have no idea why!!!
+# Not related with variable expand
+poornamesfailed() {
+    find $1 -maxdepth 1 -mindepth 1 |
+    grep -Ev "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" &
+    find $1 -maxdepth 1 -mindepth 1 |
+    grep -E "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" |
+    sort -f |
+    uniq -diD |
+    xargs ls -1 -p --directory
+}
+
+# The following code is just copy from the malfunction above, and It
+# works as intended
+
+poorfunc() {
+    if [ $REC == false ]; then
+	echo IN NON REC
+	find -H $1 -maxdepth 1 -mindepth 1 |
+	grep -Ev "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" &
+	find -H $1 -maxdepth 1 -mindepth 1 |
+	grep -E "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" |
+	sort -f |
+	uniq -diD |
+	xargs --no-run-if-empty ls -1 -p --directory
+    else
+	echo IN REC
+	# Recurrsion
+	find -H $1 -maxdepth 1 -mindepth 1 -type d -not -empty -exec "$0" '-r' {} \; 
+	# Find immediate
+	find -H $1 -maxdepth 1 -mindepth 1 |
+	grep -Ev "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" &
+	find -H "$arg" -maxdepth 1 -mindepth 1 |
+	grep -E "\/[A-Za-z_][A-Za-z_\-\.]{1,13}$" |
+	sort -f |
+	uniq -diD |
+	xargs --no-run-if-empty ls -1 -p --directory
+    fi
+}
+
+poorfunc "$arg"
+
+echo $0    
+#echo "--------------Append: $Append"
+#echo "arg#: $#"
+#echo "REC: $REC"
+#echo "arg: $arg"
+echo $REC

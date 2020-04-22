@@ -1,0 +1,232 @@
+
+
+11.
+C-h a                   ;; apropos-command
+downcs                  ;; self-insert-command * 6
+DEL                     ;; delete-backward-char
+ase                     ;; self-insert-command * 3
+RET                     ;; newline
+C-x o                   ;; other-window
+
+12.
+C-h ?                   ;; help-for-help
+b                       ;; self-insert-command
+
+13.
+C-h b                   ;; describe-bindings
+C-s                     ;; isearch-forward
+C                       ;; self-insert-command
+-                       ;; negative-argument
+g                       ;; revert-buffer
+
+14.
+C-h a                   ;; apropos-command
+y                       ;; self-insert-command
+a                       ;; self-insert-command
+n                       ;; self-insert-command
+k                       ;; self-insert-command
+RET                     ;; help-follow
+C-h b                   ;; describe-bindings
+C-s                     ;; isearch-forward
+y                       ;; self-insert-command
+a                       ;; self-insert-command
+-UUU:----F1  *Edit Macro*   Top L18    (Edit Macro) ----------------------------
+y                       ;; self-insert-command
+a                       ;; self-insert-command
+n                       ;; self-insert-command
+k                       ;; self-insert-command
+RET                     ;; help-follow
+C-h b                   ;; describe-bindings
+C-s                     ;; isearch-forward
+y                       ;; self-insert-command
+a                       ;; self-insert-command
+n                       ;; self-insert-command
+k                       ;; self-insert-command
+
+15.
+C-h a                   ;; apropos-command
+d                       ;; dired-flag-file-deletion
+i                       ;; dired-maybe-insert-subdir
+r                       ;; self-insert-command
+e                       ;; dired-find-file
+d                       ;; dired-flag-file-deletion
+RET                     ;; dired-find-file
+C-h b                   ;; describe-bindings
+C-s                     ;; isearch-forward
+d                       ;; dired-flag-file-deletion
+i                       ;; dired-maybe-insert-subdir
+r                       ;; self-insert-command
+e                       ;; dired-find-file
+d                       ;; dired-flag-file-deletion
+5*DEL                   ;; dired-unmark-backward
+C-x o                   ;; other-window
+C-s                     ;; isearch-forward
+d                       ;; dired-flag-file-deletion
+d                       ;; dired-flag-file-deletion
+i                       ;; dired-maybe-insert-subdir
+r                       ;; self-insert-command
+e                       ;; dired-find-file
+d                       ;; dired-flag-file-deletion
+5*DEL                   ;; dired-unmark-backward
+C-x o                   ;; other-window
+C-s                     ;; isearch-forward
+d                       ;; dired-flag-file-deletion
+i                       ;; dired-maybe-insert-subdir
+r                       ;; self-insert-command
+e                       ;; dired-find-file
+d                       ;; dired-flag-file-deletion
+C-x d                   ;; dired
+2*DEL                   ;; dired-unmark-backward
+/                       ;; self-insert-command
+u                       ;; dired-unmark
+s                       ;; dired-sort-toggle-or-edit
+r                       ;; self-insert-command
+/                       ;; self-insert-command
+b                       ;; self-insert-command
+i                       ;; dired-maybe-insert-subdir
+n                       ;; dired-next-line
+RET                     ;; dired-find-file
+
+
+
+EXERCISE1.1
+
+2. C-s H T M L Enter
+
+3. C-s s c a Enter M-b
+
+4. C-s s e l f Enter M-b
+
+5. C-s a r r o w Enter M-b
+
+6. C-e
+
+7. C-a
+
+8. its faster using C-s to search a keyword, M-b to get to the end of a word, C-a to the begin of a line and C-e to the end of a line
+
+10. C-x C-c
+
+
+
+EXERCISE1.2
+
+2. M-g M-g 19 Enter
+   C-k
+
+3. C-s DE Enter
+   C-a C-k
+
+4. C-s https://en.wikipe Enter
+   C-s https://en.wikipe Enter
+   C-a C-p M-k
+   C-n C-k
+
+5. C-s <! Enter Delete Delete C-u 5 C-d 
+   C-s <! Enter Delete Delete C-u 4 C-k
+   C-s <! Enter C-a C-k
+
+
+
+EXERCISE1.3
+
+2. C-s Assignment 1 Enter Delete 42
+   C-s Assignment 1 Enter Delete 42
+
+3. C-s UTF-8 M-% US-ASCII Enter y
+
+4. C-M-s [^[:ascii:]] enter C-a C-k
+
+5. C-s </ol> Enter C-e Enter
+
+
+
+EXERCISE1.4
+
+3. M-> C-r -< Enter C-f C-SP C-e M-w M-g M-g 450 C-y
+
+4. M-> C-r <! Enter C-r <! Enter C-SP C-u 3 C-n C-e M-w M-g M-g 433 Enter C-y Enter
+   M-> C-r <! Enter C-r <! Enter C-r <! Enter C-SP C-u 7 C-f M-w M-g M-g 432 Enter 
+       C-e C-u 5 C-b C-y
+   M-> C-r <! Enter C-r <! Enter M-> C-r <! Enter C-r <! Enter C-SP C-e C-n C-n M-w M-g 
+       M-g 387 Enter C-y
+   M-> C-r <! C-r C-r C-r C-r Enter C-SP C-e M-w M-g M-g 131 Enter C-y
+   M-> C-r <! C-r C-r C-r C-r C-r Enter C-SP C-e M-w M-g M-g 19 Enter C-y
+
+5. M-> C-r --- C-r C-r Enter C-SP M-> C-w Delete
+
+6. C-_
+
+7. M-> C-r --- C-r C-r Enter C-SP M-> M-x comment-region
+
+8. M-< M-% <ol> Enter <oL> Enter y y y y y y y
+   Replaced 7 occurrences
+
+
+
+EXERCISE1.5
+
+1. C-x d Enter + junk Enter
+
+2. C-x d junk Enter C-x C-f h e l l o . c
+
+3. M-x compile Enter hello Enter
+
+4. C-x b hello-out Enter
+   C-u M-! ./hello
+
+5. C-SP M-> C-x b key1.txt Enter M-> C-y
+   EOF on input
+
+
+
+EXERCISE1.6
+
+1.C-x b Enter
+
+2. most-negative-fixnum C-j
+   C-j
+   (format "%x" 2305843009213693951) C-j
+   1fffffffffffffff
+   This is 16-hex, 8-byte number, with first 4 bits is 0001 represent positive, and rest bits are all 1s.
+
+3. (random "705-426-669") C-j
+   148835371888149302
+
+4. (setq SP x(random)) C-j
+   -180397528925883602
+
+   (setq SP y(random)) C-j
+   -1520383007133758684
+
+5. (setq p (* x y))
+   -916345802672100232       negative
+
+   (setq r (logior p most-negative-fixnum))
+   -916345802672100232
+
+6. x * y should be positive whereas r is negative, so r is wrong
+
+7. x and y are not truely random.
+   From documentation of EMACS Lisp for 'random'  random numbers are
+   pseudo-random generated by a deterministic computer program
+   to mimic random.
+
+8.  x and y are 60-bits number with a sign at left-most-4 bits, where 1 is positive and
+	2 is negative.
+	To get a correct result, we need avoid overflow, which will happen when x*y>2^60
+	Now, we can find a lower bound for the probability.
+	Assume x and y are both positive (which lower the probality), 
+	P(overflow) 
+	>= P(overflow | x>0 & y >0) 
+	>= P(x>=2^30 & y >= 2^30 | x>0 & y>0)             
+	= (1 - 0.5 ^ 30) * (1 - 0.5 ^ 30) which is almost 1.
+	So the probability of correct result is close to 0.
+
+
+
+
+
+
+
+

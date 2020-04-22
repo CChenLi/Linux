@@ -1,0 +1,105 @@
+locale
+LANG=en_US.UTF-8
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=
+(Check locale set, need change local)
+
+export LC_ALL='C'
+(change locale)
+
+sort --output=words /usr/share/dict/words
+(sort words in dictionary order)
+
+wget https://web.cs.ucla.edu/classes/spring20/cs35L/assign/assign3.html
+
+1. tr -c 'A-Za-z' '[\n*]' < assign3.html
+(this command replace all characters other than upper or lower letters with new line. There are many "\n" followed by "\n" in output, each stands for a non-alphabet character.)
+
+2. tr -cs 'A-Za-z' '[\n*]' < assign3.html
+(Does the same thing as above, but it squeeze the consequtive occurence of repeated character into one. In this case, eliminate redundant "\n". In essense, this command output English words in assign3.html seperated by line.)
+
+3. tr -cs 'A-Za-z' '[\n*]' < assign3.html | sort
+(This command take in the word list from 2 and sort it alphabetically based on the locale setting. This command output a list of sorted English word in html file seperated by line.)
+
+4. tr -cs 'A-Za-z' '[\n*]' < assign3.html | sort -u
+(This command only output unique element in 3, replace repeatitive occurence with only one.)
+
+5. tr -cs 'A-Za-z' '[\n*]' < assign3.html | sort -u | comm  - words
+(This command take output of 4 as stdin to comm and compare with words. The first column is lines that unique to output of 4, second column is lins that unique to words. Third line is lines that is common in both file. So the third column find all valid English words in html file)
+
+6. tr -cs 'A-Za-z' '[\n*]' < assign3.html | sort -u | comm -23 - words
+(supress 2,3 column of output in （5.） Only print words that are unique in html file. These words are not spelled correctly)
+
+7.buildwords
+#!/usr/bin/env bash                                                             
+# remove <u>                              
+sed -E 's/<u>//g' |
+
+# remove </u>                                     
+sed -E 's/<\/u>//g' |
+
+# remove ?                                  
+sed -E 's/\?//g' |
+
+# change - to SP, ` to '                              
+tr "\`-" "\' " |
+
+# tolower           
+tr "[:upper:]" "[:lower:]" |
+
+# find all match in A<tdX>W</td>Z  
+grep -E "^ *<td[^>]*>[ pk'mnwlhaeiou]+</td> *$" |
+
+# remove leading spaces                                   
+sed 's/^ *//' |
+
+#remove html tags                                            
+sed 's/<[^>]*>//g' |
+
+tr -s ' ' '\n' |
+
+# squeeze \n                                                    
+sed 's/^$//' |
+
+sort -u
+
+8. chmod +x buildwords
+
+9. cat hwnwdshw.htm | ./buildwords > hwords
+
+10. tr -cs 'A-Za-z' '[\n*]' < assign3.html | tr "[:upper:]" "[:lower:]" | sort -u | comm -23 - hwords | wc
+(This shows there are 562 mis-spell as Hawaiian words)
+
+11. comm -23 hwords hwords | wc
+(Shows no mis-spell for hwords against itself)
+
+11. tr -cs 'A-Za-z' '[\n*]' < assign3.html | tr "[:upper:]" "[:lower:]" | sort -u | comm -23 - words
+(This shows there are 52 misspell as English)
+
+12. cat assign3.html | tr -cs 'A-Za-z' '[\n*]' | tr [:upper:] [:lower:] | sort -u | comm -23 - words | comm -12 - hwords | wc
+(This show there are 513 word mis-spell in words but correct spell in hwords
+e.g. lau wiki)
+
+
+13. cat assign3.html | tr -cs 'A-Za-z' '[\n*]' | tr [:upper:] [:lower:] | sort -u | comm -23 - hwords | comm -12 - words | wc
+(This show there are 513 word mis-spell in hwords but correct spell in words
+e.g. would write)
+
+
+
+
+
+
+
+

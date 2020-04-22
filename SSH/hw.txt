@@ -1,0 +1,38 @@
+man gpg2           to look up how to use gpg2
+
+gpg2 --gen-key     generate a key pair
+Enter
+Enter
+Enter
+y
+<real name>
+<email address>
+<comment>
+O
+<passphrase>
+<passphrase>
+
+gpg2 --list-keys   check if key has been created successfully
+
+gpg2 --armor --output hw-pubkey.asc --export <emailaddress>
+gpg2 --output hw-pubkey.sig --detach-sig hw-pubkey.asc
+
+gpg2 --verify hw-pubkey.sig hw-pubkey.asc        which output good signiture
+
+
+
+
+1. Even if the other team can oberve all the byte going across the network, 
+the exercise is still safe, because these bytes are encrypted with public key, 
+and they don't have private to decrypt.
+	(1). if the other team can trace our keystroke, the network will no longer be safe since they will get our passphrase and access to our 
+	(2). If they have our USB, they will get access to .ssh file or some file that contain our public key and private key. Then they can decrypt the byte on internet.
+
+2. gpg --verify can't verify the person created the data.
+What verify can do is verify the person who really signed the document by comparing 
+private/public key pair.
+When hacker intercept a document, he can decrypt the signature with puhlic key, then
+create his own sign and send the document.
+
+A way to fix this problem is to have a trusted third party to track each transmission and
+to keep record the orginal file with author.

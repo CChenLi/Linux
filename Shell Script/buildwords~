@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# remove <u>
+sed -E 's/<u>//g' |
+
+# remove </u>
+sed -E 's/<\/u>//g' |
+
+# remove ?
+sed -E 's/\?//g' |
+
+# change - to SP, ` to '
+tr "\`-" "\' " |
+
+# tolower
+tr "[:upper:]" "[:lower:]" |
+
+# find all match in A<tdX>W</td>Z
+grep -E "^ *<td[^>]*>[ pk'mnwlhaeiou]+</td> *$" |
+#grep -E "^ *<td>.+</td> *$" |
+
+# remove leading spaces
+sed 's/^ *//' |
+
+#remove html tags
+sed 's/<[^>]*>//g' |
+
+tr -s ' ' '\n' |
+
+# squeeze \n
+sed 's/^$//' |
+
+#sed "/[^pk'mnwlhaeiou]/d" |
+
+sort -u
+
+
+
+
+
+
+ 
