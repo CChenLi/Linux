@@ -1,0 +1,75 @@
+1. I created a directory and create two files bar and .foo inside the directory:
+[mkdir cs35Llab04]
+[touch bar .foo]
+
+2. then verify the bug still exist:
+[/usr/bin/ls -a -A] output . .. bar .foo
+
+3. verify version:
+[/usr/bin/ls --version]
+ls (GNU coreutils) 8.22
+
+4. download new patch and signature:
+[wget ftp://ftp.gnu.org/gnu/coreutils/coreutils-8.29.tar.xz]
+[wget ftp://ftp.gnu.org/gnu/coreutils/coreutils-8.29.tar.xz.sig]
+[wget https://ftp.gnu.org/gnu/gnu-keyring.gpg]
+
+5. verify:
+[gpg --verify --keyring ./gnu-keyring.gpg coreutils-8.29.tar.xz.sig]
+gpg: Signature made Wed 27 Dec 2017 10:29:05 AM PST using RSA key ID 306037D9
+gpg: Good signature from "Pádraig Brady <P@draigBrady.com>"
+gpg:                 aka "Pádraig Brady <pbrady@redhat.com>"
+gpg:                 aka "Pádraig Brady <pixelbeat@gnu.org>"
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 6C37 DC12 121A 5006 BC1D  B804 DF6F D971 3060 37D9
+
+The signature is good but no indication belongs to the owener.
+
+6. intall patch:
+[tar -xJvf coreutils-8.29.tar.xz]
+[./configure --prefix="/u/eng/class/classkyb/CS35lab04/coreutils-8.29"]
+[make]
+[make install]
+
+8. test this patch
+[cd bin]
+[./ls -a -A] 
+and . .. still in output
+[cd ..]
+
+7. get the patch file
+[wget "https://debbugs.gnu.org/cgi/bugreport.cgi?bug=30963;\
+filename=0001-ls-A-now-overrides-a.patch;att=1;msg=10"]
+[mv bugreport.cgi\?bug\=30963\;filename\=0001-ls-A-now-overrides-a.patch\;\
+att\=1\;msg\=10 patch_file]
+
+8. apply patch_file
+[patch -p1 < patch_file]
+patching file NEWS
+Hunk #1 FAILED at 4.
+1 out of 1 hunk FAILED -- saving rejects to file NEWS.rej
+patching file src/ls.c
+Hunk #1 succeeded at 1900 (offset -3 lines).
+patching file tests/local.mk
+patching file tests/ls/a-option.sh
+This shows there is one Hunk failed
+
+9. remake
+[autoreconf -fi]
+[make]
+
+10. test
+[cd bin] get into the directory contain binary
+[./ls -a -A]
+. and .. is still there, probably because I didn't install. So I check src 
+[cd ../src]
+[./ls -a -A]
+. and .. are not in output, bug fixed.
+
+
+
+
+
+
+

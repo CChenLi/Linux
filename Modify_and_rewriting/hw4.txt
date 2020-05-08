@@ -1,0 +1,35 @@
+Q1.
+In side src 
+
+[time ls]			test speed for orginal
+real	0m0.101s
+user	0m0.005s
+sys	0m0.025s
+[time ./ls -a -A]	test speed for new patch
+real	0m0.008s
+user	0m0.004s
+sys	0m0.003s
+
+Apparently, new patch make performance better
+
+Q2.
+There might be some program either from the old code of my company or code 
+from other place that depends on the bug style of ls. In the case, these
+program is very likely to fail.
+
+Q3. [python2 ./randline.py /dev/null]
+we will get a
+IndexError: list index out of range
+Because random.choice put input as a sequence and access, when the sequence
+is empty, choice raise IndexError
+
+Q4. [python3 ./randline.py /dev/null]
+we will get a
+SyntaxError: invalid syntax
+Python3 no more support tuple exception, which is supported in python2
+
+Q5. [python2 ./shuf.py -r -n 5 -i 1-9]
+When running with python2, my scripy throw an
+AttributeError: 'module' object has no attribute 'choices'
+The reason is I utilized random.choices to implement my function,
+and this functionality doesn't not exist in python2.

@@ -1,0 +1,199 @@
+1. get the buggy file
+[wget https://web.cs.ucla.edu/classes/spring20/cs35L/assign/coreutils-with-bug.tar.gz]
+[tar -xzvf coreutils-with-bug.tar.gz]
+
+2. Build
+[cd coreutils-with-bug]
+[./configure --prefix="/u/eng/class/classkyb/CS35L/lab05"]
+[make]
+and I get following error message:
+In file included from utimecmp.c:41:0:
+utimens.h:2:5: error: conflicting types for 'futimens'
+ int futimens (int, char const *, struct timespec const [2]);
+     ^
+In file included from utimecmp.h:25:0,
+                 from utimecmp.c:25:
+/usr/include/sys/stat.h:374:12: note: previous declaration of 'futimens' was here
+ extern int futimens (int __fd, __const struct timespec __times[2]) __THROW;
+            ^
+
+Initially, I thought there is a discrepancy between declaration and implementation
+But then I realize there are two function of same name, so we need rename.
+
+3. Apply rename patch
+[wget https://web.cs.ucla.edu/classes/spring20/cs35L/assign/coreutils.diff]
+
+take a look at patch file
+[emacs coreutils.diff]
+and realize there is no need to remove prefix directory
+
+apply path and build again
+[patch -p0 < coreutils.diff ]
+[make]
+[make install]
+
+This patch fixed the error because it renamed one conclicting function.
+
+4. reproduce bug
+[man mktemp] check what mktemp does
+
+#!/usr/bin/env bash
+tmp=$(mktemp -d)
+cd $tmp
+touch -d '1918-11-11 11:00 GMT' wwi-armistice-cs35L
+touch now
+sleep 1
+touch now1
+TZ=UTC0 /u/eng/class/classkyb/CS35L/lab05/bin/ls -lt --full-time wwi-armistice-cs35L now now1
+
+output:
+-rw-r--r-- 1 classkyb class 0 1918-11-11 11:00:00.000000000 +0000 wwi-armistice-cs35L
+-rw-r--r-- 1 classkyb class 0 2020-05-06 04:35:19.193217124 +0000 now1
+-rw-r--r-- 1 classkyb class 0 2020-05-06 04:35:18.188186273 +0000 now
+
+The correct order should be
+now1
+now 
+wwi-armistice-cs35L
+
+5. Locate the bug
+[cd /u/eng/class/classkyb/CS35L/lab05/coreutils-with-bug/src]
+
+I think the bug is in -t, so I go to
+[man ls]
+[/-t Enter]
+this shows  
+-t     sort by time, newest first; see --time
+look into source file
+[emacs ls.c]
+but realized it's no quite possible to find bug in this way.
+So I decided to run it on gdb
+[cd %tmp]
+[gdb /u/eng/class/classkyb/CS35L/lab05/bin/ls]
+[info functions]
+I think there are two function might cause this bug since we are using -t
+sort_files
+cmp_mtime
+so set breakpoint at those two functions
+[b cmp_mtime]
+[b sort_files]
+
+Now I can start to run gdb
+(gdb) r -lt --full-time wwi-armistice now now1
+Starting program: /w/home.03/class/classkyb/CS35L/lab05/bin/ls -lt --full-time wwi-armistice now now1
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+/w/home.03/class/classkyb/CS35L/lab05/bin/ls: wwi-armistice: No such file or directory
+
+Breakpoint 2, sort_files () at ls.c:2954
+2954	{
+
+I tried to disass, but its too complicated
+
+(gdb) l
+2949	
+2950	/* Sort the files now in the table.  */
+2951	
+2952	static void
+2953	sort_files (void)
+2954	{
+2955	  int (*func) (V, V);
+2956	
+2957	  /* Try strcoll.  If it fails, fall back on strcmp.  We can't safely
+2958	     ignore strcoll failures, as a failing strcoll might be a
+(gdb) s
+2962	  if (! setjmp (failed_strcoll))
+(gdb) s
+2964	      switch (sort_type)
+(gdb) s
+2969		  switch (time_type)
+(gdb) s
+2975		      func = sort_reverse ? rev_cmp_mtime : compare_mtime;
+(gdb) s
+3034	  qsort (files, files_index, sizeof *files, func);
+(gdb) s
+
+Breakpoint 2, cmp_mtime (cmp=0x402960 <xstrcoll>, b=0x617180, a=0x6170d0) at ls.c:2880
+2880	  int diff = timespec_cmp (get_stat_mtime (&b->stat),
+(gdb) s
+timespec_cmp (b=..., a=...) at ../lib/timespec.h:48
+48	  int diff = a.tv_sec - b.tv_sec;
+(gdb) s
+49	  return diff ? diff : a.tv_nsec - b.tv_nsec;         
+
+I realize there is a comparision, so print return value
+(gdb) p diff
+$1 = 1588739246											
+I converted this second into years. Its around 50 years. So there might
+be some problem.
+and looks like cmparision was done by substraction with seconds. 
+100 years is 3153600000, larger than Tmax for int.
+Alrigth, overflow is the problem, we shouldn't use substraction nor addition.
+[q]
+
+6.fix bug
+[cd /u/eng/class/classkyb/CS35L/lab05/coreutils-with-bug/lib]
+[cp timespec.h timespecs.h]
+[emacs timespecs.h]
+
+go to subtraction line:
+timespec_cmp (struct timespec a, struct timespec b)
+{
+  int diff = a.tv_sec - b.tv_sec;
+  return diff ? diff : a.tv_nsec - b.tv_nsec;
+}
+We can see, the logic is compare sev first, if they are equal, compare nsec.
+so we can change it to:
+static inline int
+timespec_cmp (struct timespec a, struct timespec b)
+{
+  if(a.tv_sec > b.tv_sec){
+    return 1;
+  } else if(a.tv_sec < b.tv_sec){
+    return -1;
+  } else{
+    if(a.tv_nsec > b.tv_nsec){
+      return 1;
+    } else if(a.tv_nsec < b.tv_nsec){
+      return -1;
+    } else{
+      return 0;
+    }
+  }
+}
+
+7. ChangeLog
+C-x 4 a
+2020-05-05  Chen Li  <classkyb@lnxsrv07.seas.ucla.edu>
+
+        * timespec2.h: 
+
+8. Create a patch file
+[emacs lab5.diff] then paste ChangeLog into the file
+[diff -u timespec.h timespec2.h > patch.diff]
+[cat patch.diff >> lab5.diff]
+
+9. Apply patchfile
+[patch -p0 <lab5.diff]
+[cd ..]
+[make]
+[make install]
+
+9. Original test
+[cd $tmp]
+[TZ=UTC0 /u/eng/class/classkyb/CS35L/lab05/bin/ls -lt --full-time wwi-armistice-cs35L now now1]
+-rw-r--r-- 1 classkyb class 0 2020-05-06 04:27:26.441704323 +0000 now1
+-rw-r--r-- 1 classkyb class 0 2020-05-06 04:27:18.113448648 +0000 now
+-rw-r--r-- 1 classkyb class 0 1918-11-11 11:00:00.000000000 +0000 wwi-armistice-cs35L
+
+10. test
+[cd ~]
+[touch -d '1918-11-11 11:00 GMT' wwi-armistice-cs35L]
+[touch now]
+[touch now1]
+[TZ=UTC0 ls -lt --full-time wwi-armistice-cs35L now now1]
+-rw-r--r-- 1 classkyb class 0 2054-12-17 17:28:16.000000000 +0000 wwi-armistice-cs35L
+-rw-r--r-- 1 classkyb class 0 2020-05-06 06:43:55.962678000 +0000 now1
+-rw-r--r-- 1 classkyb class 0 2020-05-06 06:43:48.831138000 +0000 now
+
+Apparently, the bug exist on default ls, and recognize 1918 as 2054.
