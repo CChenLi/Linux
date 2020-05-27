@@ -337,8 +337,11 @@ git checkout -b
 git branch -vv         show all branches
 upstream???
 
+Three way merge
+fast-forward merge
+
 git merge <branch>     joins brance into current checked-out branch
-merge conflicts, two branch have different copy of the same file
+merge conflicts, happen in three way merge,two branch have different copy of the same file
 
 git rebase <branch>
 git checkout feature     rebase feature onto master
@@ -346,6 +349,42 @@ git rebase master
 git checkout master      after rebase, get master to lattest commit
 git merge feature
 
+Referencing commits
+we can refer to any single commit butots 40-char SHA-1 hash /check ppt
+
+commit range:
+double dot   
+triple dot   XOR
+
+Ancestry references
+- caret(^) after a commit ref resolves to a parent commit
+	 include a number after if get a different parent at a fork history
+- tilde(~) after a commit ref resolve to 1st parent of commit
+	including a number after it gets older generation in commit history
+	
+`git format-patch -n <object>`
+	* n specifies how many commit should be included in to the patch
+	* <object>  can be a single commit or range
+	* by default print the patch filename, `--stdout` prints patch contents
+	* apply the patch to your working directory using git am < file.patch
+									     
+.git directory
+- `cd .git`
+- `ls`
+- .git/objects/ store commit,tree,blob as subfolder
+- .git/refs   .git/HEAD file is a symbolic ref to our current ref
+- .git/indx   a binary ifle that act as the staging area(also called index)
+	`git ls-files --stage` 
+- .git/log	
+
+Git + Graphs
+- directed graph, directed acyclic graph(DAG)
+- git commit history can be represented as a DAG
+
+Topological sorting   parent apears before child
+- modified depth-first-search
+
+	
 ### Git Data Model:
 
 commit object point to tree point to two blobs
