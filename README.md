@@ -6,6 +6,7 @@ topic. Focusing on topic, explore methods finish certain task. There is a lab lo
 ----------------
 ## Content
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
+* [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Linking](#Linking)
 * [Git](#Git)
 
@@ -132,8 +133,107 @@ You can modify `./profile` or `.bashrc` in `~`to automatically do this
 	* `sed "s/this/that/" file` replace first `this` with `that`
 	* `sed "s/this/that/g" file` replace all
 	* `sed -E "s/hi|bye//g" file` remove all `hi` or `bye`
--
+- `find` search for files in a directory
+	* `-name` search by name
+	* `-type` search by file type
+	* `-maxdepth DEPTH` descend into directory to DEPTH
+	* `-prune` ignore a directory and files under it
+	* `find . -type d -exec echo {} >> matches.txt \;` `\;` completes `exec`
 	
+### Shell Scripts
+[Learn X in Y minutes](https://learnxinyminutes.com/docs/bash/)  
+- specify the interpreter path at top of file using **shebang**
+	*`#!/usr/bin/bash`
+	* OR automatically find bash interpreter in $PATH using `#!/usr/bin/env bash`
+- `man test`
+```
+#!/usr/bin/env bash
+
+echo Hello world! # => Hello world!
+
+# Each command starts on a new line, or after a semicolon:
+echo 'This is the first line'; echo 'This is the second line'
+
+first=Bruce    #no space!
+last=Wayne
+echo $first
+name="$first $last"
+
+#parameter expansion ${ }     avoid ambiguity
+echo "${name} is Batman"
+
+# Command substitution  $()
+dirs=$(find . -maxdepth 1)
+echo "My current directory is $(pwd)"
+
+# Arithmetic expansion $(())
+a=$((1+3))
+b=$(($a+3))    #b = 7
+
+# Built-in variables:
+# There are some useful built-in variables, like
+echo "Last program's return value: $?"
+echo "Script's PID: $$"
+echo "Number of arguments passed to script: $#"      #not include program name
+echo "All arguments passed to script: $@"
+echo "Script's arguments separated into different variables: $1 $2... ${10} ..."
+
+#Quotes
+a=pwd
+echo '$a'   # $a            single quotes use literal
+echo "$a"   # pwd           double quotes expand backticks and $
+echo `$a`   # /usr/...      backticks expand and execute as shell command
+echo "There are `ls | wc -l` items here."
+#There are        3 items here.    space due to wc format
+
+# Conditionals
+echo "always executed" || echo "only execute if first fails"
+echo "always executed" && echo "only execute if first not fails"
+
+# if statements 	requires space since [ and ] are commands man [
+numer=$(($RANDOM % 61 - 30)) between -30 to 30
+if [ $number -eq 0 ]; then
+	echo "Zero"
+elif [ $number -gt 0 ]; then
+	echo "Positive"
+else 
+	echo "Negative"
+fi
+
+if [ -d abc ]  #True is abc exist and is a directory
+
+echo "What's your name?"
+read Name # Note that we didn't need to declare a new variable
+echo Hello, $Name!
+
+# To use && and || with if statements, you need multiple pairs of square brackets:
+if [ "$Name" == "Steve" ] && [ "$Age" -eq 15 ]
+then
+    echo "This will run if $Name is Steve AND $Age is 15."
+fi
+
+if [ "$Name" == "Daniya" ] || [ "$Name" == "Zach" ]
+then
+    echo "This will run if $Name is Daniya OR Zach."
+fi
+
+# There is also the `=~` operator, which tests a string against a Regex pattern:
+Email=me@example.com
+if [[ "$Email" =~ [a-z]+@[a-z]{2,}\.(com|net|org) ]]
+then
+    echo "Valid email!"
+fi
+
+# Bash uses a `case` statement that works similarly to switch in Java and C++:
+case "$Variable" in
+    #List patterns for the conditions you want to meet
+    0) echo "There is a zero.";;  #;; is like break
+    1) echo "There is a one.";;
+    *) echo "It is not null.";;
+esac
+```
+
+
 ### [Regular Expression Cheat Sheet](https://www.rexegg.com/regex-quickstart.html)
 - to match '-' in Character set [-abc] or [abc-]
 - POSIX Bracket Expression
