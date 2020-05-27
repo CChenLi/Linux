@@ -39,7 +39,7 @@
 		3. server encrypy challenge with pubkey to client check if client can decrypt
 	   Session encryption, client and server agree on a sym key called `session key`
 
-### lab2 starting at lnxsrv09
+### [lab2](https://github.com/CChenLi/Linux/tree/master/SSH) starting at lnxsrv09
 Generate SSH key pair  
 - `ssh-keygen` 
 - `<enter passphrase>` Then you will see fingerprint 
