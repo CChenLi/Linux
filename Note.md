@@ -75,7 +75,10 @@ You can modify `./profile` or `.bashrc` in `~`to automatically do this
 1. set up `ssh-agent`
 2. keep use `ssh -A`
 
-
+### gpg
+- tool that provides digital encryption and signing services
+- Certifies and timesramps a document
+- if the document is subsequently modified, signature will fail
 
 -------------------------------------------------------------
 ## Linking
