@@ -2,6 +2,7 @@
 
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Linking](#Linking)
+* [Git](#Git)
 
 `echo $PATH`         default path for command devided by :
 
@@ -14,7 +15,9 @@
 
 ------------------------------------------------------------
 ## Encryption and SSH secure shell
->Cipher example
+[Back to Content Tabble](#note-for-linux)
+
+> Cipher example
  - Caesar's    shift
  - AES(symmetric) transform data a number of time key can be up to 128, 192, or 256 bits
  - RSA(asymmetric) combine 2 large prime to generate public key the prime are kept secret in the private key for decrypt use asymmetric to send symmetric key is SSH
