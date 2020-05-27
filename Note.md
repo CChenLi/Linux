@@ -79,6 +79,8 @@ You can modify `./profile` or `.bashrc` in `~`to automatically do this
 
 -------------------------------------------------------------
 ## Linking
+[Back to Content Tabble](#note-for-linux)
+
 `#include "add.h"` 
 
 ### Static:  
@@ -142,6 +144,7 @@ void to_run_after(void){
 
 -------------------------------------------------------------
 ## Git
+[Back to Content Tabble](#note-for-linux)
 
 
 	SSH keys with github: week2
