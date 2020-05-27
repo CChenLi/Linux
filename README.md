@@ -1,5 +1,10 @@
 # Linux Enviroment Experiment
+*This project is based on CS35L UCLA. The main purpose of this project is to construct enviroment under Linux 
+system, practice working under Linux. The whole project is divided into 10 section. Each section has a specific
+topic. Focusing on topic, explore methods finish certain task. There is a lab log for each task.*
 
+----------------
+## Content
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Linking](#Linking)
 * [Git](#Git)
@@ -12,6 +17,17 @@
 `stat d`      this shows Linksnumber 2, one is d, one is . inside d
 `ln -s d soft`   create sofelink `soft` to d     ln is not allowed to hard link a dir
 
+## Main topics
+
+* Getting to know your system
+* SSH setup and use in application
+* Shell scripting
+* C programming and debugging
+* System call programming and debugging
+* Dynamic linking
+* Basic change management
+* Change management speluning and implementation
+* Research and development in computing
 
 ------------------------------------------------------------
 ## Encryption and SSH secure shell
@@ -82,7 +98,7 @@ You can modify `./profile` or `.bashrc` in `~`to automatically do this
 
 -------------------------------------------------------------
 ## Linking
-[Back to Content Tabble](#note-for-linux)
+[Back to Content Tabble](#linux-enviroment-experiment)
 
 `#include "add.h"` 
 
@@ -147,7 +163,7 @@ void to_run_after(void){
 
 -------------------------------------------------------------
 ## Git
-[Back to Content Tabble](#note-for-linux)
+[Back to Content Tabble](#linux-enviroment-experiment)
 
 
 	SSH keys with github: week2
@@ -184,22 +200,8 @@ git stash apply
 git apply
 ./gitignore 			file that you don't want to track, like intermediate files
 
-This project is based on CS35L UCLA. The main purpose of this project is to construct enviroment under Linux 
-system, practice working under Linux. The whole project is divided into 10 section. Each section has a specific
-topic. Focusing on topic, explore methods finish certain task. There is a lab log for each task.
 
 
-## Main topics
-
-* Getting to know your system
-* SSH setup and use in application
-* Shell scripting
-* C programming and debugging
-* System call programming and debugging
-* Dynamic linking
-* Basic change management
-* Change management speluning and implementation
-* Research and development in computing
 
 
 ### Commands and basic scripting
