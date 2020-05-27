@@ -97,6 +97,65 @@ You can modify `./profile` or `.bashrc` in `~`to automatically do this
 - if the document is subsequently modified, signature will fail
 
 -------------------------------------------------------------
+## Shell Scripts and Regular Expression
+
+[Back to Content Tabble](#linux-enviroment-experiment)
+
+### Some commands work with regex
+- `tr` translate ro delete **character**
+	* `echo "hello world" | tr 'odw' 'aye'` `hella early`
+	* `echo "hello world" | tr -d 'lo'` `he wrd`
+	* `echo "hello world" | tr -s 'l'` `helo world`
+	* `echo "hello world" | tr 'odw' 'o'` `hella aarla`
+	* `echo "hello world" | tr 'o' 'aye'` `hella warld` maps o to a
+- `sort [FILE]` also from stdin
+	* `-u` remove duplicate
+	* sort by new line
+- `comm FILE1 FILE2` generate output of 3 columns
+	* Col1: Lines unique to FILE1
+	* Col1: Lines unique to FILE2
+	* Col1: Lines common in both file
+	* read stdin by pass `-` as filename
+	* `-1` supress Col1
+- `wc` count lines, words, bytes
+	* `-l` only lines
+- `locale`
+	* print information about current locale enviroment, language, country, character encoding settings
+	* Prefixed with `LC_` `LC_COLLATE`-order for comparing and sorting
+	* `export LC_ALL='C'` Change all local variable to `C`
+	* Locale characer encoding can affect behavior of command like `sort` 
+- `grep` Search for lines matching text
+	* `-E` use ERE, `-F` matches fixed string instead of regex
+	* `ls -l | grep "^d"`
+- `sed` reolace text using regex `-E`
+	* `sed "s/ORIGINAL/REPLACEMENT/[FLAGS]" [FILENAME]`
+	* `sed "s/this/that/" file` replace first `this` with `that`
+	* `sed "s/this/that/g" file` replace all
+	* `sed -E "s/hi|bye//g" file` remove all `hi` or `bye`
+-
+	
+### [Regular Expression Cheat Sheet](https://www.rexegg.com/regex-quickstart.html)
+- to match '-' in Character set [-abc] or [abc-]
+- POSIX Bracket Expression
+- [ab[:digit:]] is same as [ab0-9]
+- Capture groups (abc){3} matches abcabcabc, \# match precious capture group, start from 1 
+	`<([A-Z][A-Z0-9]*)\b[^>]*>.*?,/|1>` match HEML tag
+- `yes|no` match `yes` or `no`
+- `G(oo)+gle` match even number of `o`
+- `h(im|er)` him or her
+- `\d{3}-\d{3}-\d{4}` 123-456-7890 phone number
+
+> Basic vs. Entended Regular Expressions
+
+- Basic regular expression(BRE): ? + {} () | are nomal, escape as metacharacter
+- Extended reuglar expression(ERE)
+
+
+
+
+
+
+-------------------------------------------------------------
 ## Linking
 [Back to Content Tabble](#linux-enviroment-experiment)
 
