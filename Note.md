@@ -1,4 +1,6 @@
 # Note for Linux
+[Encryption and SSH secure shell](Encryption and SSH secure shell)
+[Linking](Linking)
 
 `echo $PATH`         default path for command devided by :
 
