@@ -33,9 +33,41 @@
 		3. server encrypy challenge with pubkey to client check if client can decrypt
 	   Session encryption, client and server agree on a sym key called `session key`
 
-### lab2
+### lab2 starting at lnxsrv09
+Generate SSH key pair  
+- `ssh-keygen` 
+- `<enter passphrase>` Then you will see fingerprint 
+- `cd .ssh`  
+- `id_rsa` and `id_rsa.pub` is created	
 
+> Copy pubkey to server
+1. Manually append content of `id_rsa.pub` to `authorized_keys`
+2. or `ssh-copy-id username@host`
+- `ssh-copy-id username@lnxsrv10`
+- `<enter password>`
 
+> Login with SSH key from lnxsrv09 to lnxsrv10
+- `ssh username@lnxsrv10`
+- By default, SSH uses defualt key `~/.ssh/id_rsa`
+- Or, `ssh -i <path-to-private-key> username@lnxsrv10`
+- If your key has passphrase, you need to enter it in prompt
+
+> Use ssh-agent a process need to redo everytime
+1. Back to lnxsrv09 `exit`
+2. ``eval `ssh-agent` `` start process
+3. `ssh-add` tell which key to use
+4. enter passphrase
+5. then you can ssh to server without entering passphrase
+forwarded over SSH using ssh -A
+You can modify `./profile` or `.bashrc` in `~`to automatically do this 
+
+> Use X11 forwarding
+- `ssh -X`
+- `xeyes` check success
+
+> Multiple hop
+1. set up `ssh-agent`
+2. keep use `ssh -A`
 
 
 
