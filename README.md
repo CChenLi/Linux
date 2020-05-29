@@ -426,7 +426,23 @@ up(){			#Usage: up 2     cd .. cd ..
 	- `^[+-]?(0|([1-9][[:digit:]]*))$`
 - [Regex Test](https://regexr.com/)	
 
+------------------------------------------------------------
+## Patches, Compilation & Makefile
+Back to Content Tabble](#linux-enviroment-experiment)
 
+### Diff and patches
+- `diff -u file1 file2`
+	- Comapre the difference in files line by line
+	- -u output in diff formatc
+```
+--- path/to/originalfile	last modified data
++++ path/to/modifiedfile	last modified data
+@@ -startingline,endingline +startingline,endline @@
+- line deleted from original
++ line added to the original
+an unchanged line
+```
+- `patch -p[N] < patch_file
 
 
 -------------------------------------------------------------
