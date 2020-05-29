@@ -1,7 +1,6 @@
 # Linux Enviroment Experiment
 *This my class note for CS35L UCLA. The main purpose of this project is to construct enviroment under Linux 
-system, practice working under Linux. The whole project is divided into 10 section. Each section has a specific
-topic. Focusing on topic, explore methods finish certain task. There is a lab log for each task.*
+system, practice working under Linux. The README contains most of the stuff. However, more detail are in the log file in each subdirectories.*
 
 ----------------
 ## Content
