@@ -29,6 +29,34 @@ topic. Focusing on topic, explore methods finish certain task. There is a lab lo
 * Basic change management
 * Change management speluning and implementation
 * Research and development in computing
+---------------------------------
+## Linux basic
+[Back to Content Tabble](#linux-enviroment-experiment)
+
+Everyting in Linux is a file or process
+Files are collection of data
+Process are an instance of an executing program
+
+### Files
+- Organized in a tree of directories
+- Regular files are text, images, PDF, etc
+- Directoreis, executble programs, devices
+- Hidden file start with a dot .ssh .profile
+
+### Using Linux with a shell
+- Shell is a interface where you can interact with Linux, bash, zsh
+- 
+
+
+
+`echo $PATH`         default path for command devided by :
+`pg1 2> pg2`    write stderr from pg1 to pg2
+`mkdir d` 
+`stat d`      this shows Linksnumber 2, one is d, one is . inside d
+`ln -s d soft`   create sofelink `soft` to d     ln is not allowed to hard link a dir
+
+
+
 
 ------------------------------------------------------------
 ## Encryption and SSH secure shell
