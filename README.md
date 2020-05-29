@@ -10,14 +10,6 @@ topic. Focusing on topic, explore methods finish certain task. There is a lab lo
 * [Linking](#Linking)
 * [Git](#Git)
 
-`echo $PATH`         default path for command devided by :
-
-`pg1 2> pg2`    write stderr from pg1 to pg2
-
-`mkdir d` 
-`stat d`      this shows Linksnumber 2, one is d, one is . inside d
-`ln -s d soft`   create sofelink `soft` to d     ln is not allowed to hard link a dir
-
 ## Main topics
 
 * Getting to know your system
@@ -33,28 +25,74 @@ topic. Focusing on topic, explore methods finish certain task. There is a lab lo
 ## Linux basic
 [Back to Content Tabble](#linux-enviroment-experiment)
 
-Everyting in Linux is a file or process
-Files are collection of data
-Process are an instance of an executing program
+Everyting in Linux is a file or process  
+Files are collection of data  
+Process are an instance of an executing program  
 
 ### Files
-- Organized in a tree of directories
-- Regular files are text, images, PDF, etc
-- Directoreis, executble programs, devices
+- Organized in a tree of directories  
+- Regular files are text, images, PDF, etc  
+- Directoreis, executble programs, devices  
 - Hidden file start with a dot .ssh .profile
 
 ### Using Linux with a shell
-- Shell is a interface where you can interact with Linux, bash, zsh
-- 
+Shell is a interface where you can interact with Linux, bash, zsh
 
+> File Paths
+- Root dir is /
+- User's homedir is ~ not a folder, but shell internally expand to home dir
+- Absolute path, relative to root, start with /
+- Relative path, relative to current dir
 
+> Basic command
 
-`echo $PATH`         default path for command devided by :
-`pg1 2> pg2`    write stderr from pg1 to pg2
-`mkdir d` 
-`stat d`      this shows Linksnumber 2, one is d, one is . inside d
-`ln -s d soft`   create sofelink `soft` to d     ln is not allowed to hard link a dir
+`echo $PATH`         default path for command devided by :  
+`pg1 2> pg2`    write stderr from pg1 to pg2  
+`mkdir d`  
+`stat d`      this shows Linksnumber 2, one is d, one is . inside d  
+`ln -s d soft`   create sofelink `soft` to d     ln is not allowed to hard link a dir  
+`C-l` clear terminal screen  
+`C-u` delete all text behind cursor  
+`ps` list current funning process  
+`kill PID` kill process  
 
+> Enviroment variables
+
+`HOME` ~
+`PATH`  list of directories, separated by colons, where shell should look for executables   
+Assign variable using VAR=...   
+Access with dollar sign, e.g. $VAR  
+
+`export` 命令用于设置或显示环境变量。  
+在 shell 中执行程序时，shell 会提供一组环境变量。
+export 可新增，修改或删除环境变量，供后续执行的程序使用。export 的效力仅限于该次登陆操作。
+`export PATH=”$PATH:your path1:your path2 ...”` 
+**You can export in your ~/.profile file to do it every time you log in**
+
+### Metadata and Inodes
+- Every file is associated with descriptive info called metadata, including:
+	- File type (regular, dir,...)
+	- Link count, how many directory entries link to the file
+	- Permission,  which users can read, write, or execute a file 
+	- File owner
+	- File size (in Byte)
+	- Time of last access (read/execute), last modification (write), and change to inode
+	- Disk address of file contents
+- Inodes & directories
+	- Every file in the file system is associated with an inode, a data structure that stores its corresponding file's metadata
+	- Inodes are stored in an inode table, which is an array with all the files in the filesystem.
+	- Each inode has a unique inode number that is used to index into the table
+	- A directory is actually a file mapping filenames to inode numbers
+	- Inodes and directories work together to store metadata for every file
+	
+### Essential Linux directories  
+/bin  | essential binaries (e.g. pwd, bash)
+/dev  | devices (and virtual ones like /dev/null)
+/home | users' home directories
+/tmp  | temporary files
+\usr  | user files and binaries (e.g. /usr/bin)
+
+	
 
 
 
