@@ -63,11 +63,11 @@ Shell is a interface where you can interact with Linux, bash, zsh
 Assign variable using VAR=...   
 Access with dollar sign, e.g. $VAR  
 
-`export` 命令用于设置或显示环境变量。  
-在 shell 中执行程序时，shell 会提供一组环境变量。
-export 可新增，修改或删除环境变量，供后续执行的程序使用。export 的效力仅限于该次登陆操作。
-`export PATH=”$PATH:your path1:your path2 ...”` 
-**You can export in your ~/.profile file to do it every time you log in**
+`export` 命令用于设置或显示环境变量。    
+在 shell 中执行程序时，shell 会提供一组环境变量。  
+export 可新增，修改或删除环境变量，供后续执行的程序使用。export 的效力仅限于该次登陆操作。  
+`export PATH=”$PATH:your path1:your path2 ...”`   
+**You can export in your ~/.profile file to do it every time you log in**  
 
 ### Metadata and Inodes
 - Every file is associated with descriptive info called metadata, including:
@@ -92,9 +92,24 @@ Command | Definition
 /dev  | devices (and virtual ones like /dev/null)
 /home | users' home directories
 /tmp  | temporary files
-\usr  | user files and binaries (e.g. /usr/bin)
+/usr  | user files and binaries (e.g. /usr/bin)
 
+### Links
+- Hard links points directly to inode on dist, This means multiple files can map to the same inode
+- Symbolic(soft) links point to the path of the file
+- Create link
+	- Hard: `ln source link`
+	- Soft: `ln -s source link`
 	
+```flow
+st=>start:Symbolic link
+e=>end:Disk
+i=>start:Inode
+file=>start:File
+hl=>start:Hardlink
+st->file->i->e
+hl->i->e
+```
 
 
 
