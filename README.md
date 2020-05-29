@@ -362,10 +362,35 @@ declare -a hw		#declare an array hw
 hw[0]="hello"
 echo ${hw[@]}		#hello
 hw+=("world")		#appending
-echo ${hw[@]}		#hello world
+echo ${hw[@]}		#hello world    you can add 1 to hello
 
+# Function
+equal() {
+	if [ $1 -eq $2 ]; then     #arguments $1...
+		return 0		#exit success
+	else
+		return 1		
+	fi
+}
+equal 5 9			no return, no x=equal 5 9
+echo $?			#1
+equal 5 "5"
+echo $?			#0 they are equal
+```
 
-
+# Customize Command in ~/./profile
+`source filename` source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。该命令通常用命令“.”来替代
+```
+# ~/./profile
+up(){			#Usage: up 2     cd .. cd ..
+	local limit=1
+	if [ $# -eq 1 ]; then
+		limit=$1
+	fi
+	for i in $(seq 1 $limit); do
+		cd ..
+	done
+}
 ```
 
 
