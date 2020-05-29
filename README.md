@@ -102,11 +102,11 @@ Command | Definition
 	- Soft: `ln -s source link`
 	
 ```flow
-st=>start:Symbolic link
-e=>end:Disk
-i=>start:Inode
-file=>start:File
-hl=>start:Hardlink
+st=>start: Symbolic link
+e=>end: Disk
+i=>start: Inode
+file=>start: File
+hl=>start: Hardlink
 st->file->i->e
 hl->i->e
 ```
