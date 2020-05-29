@@ -442,7 +442,61 @@ Back to Content Tabble](#linux-enviroment-experiment)
 + line added to the original
 an unchanged line
 ```
-- `patch -p[N] < patch_file
+- `patch -p[N] < patch_file`
+	- look at patchfile/diff file to see what N to use
+	- use N=1 to modify original/file to modifide/file
+
+### Compiled language
+- +Fast, -test changes require recompilation, -Less portable. Generated binary
+is platform dependent.
+- Compilers translate source code into code that a computer can quickly
+read and execute
+- Source Code → Intermediate Representation → Assembly for Target
+Architecture → Binary Executable
+- Examples of compiled languages are C, C++, C#, Rust, Haskell, Swift
+- source code → preprocessor → compiler -S → assembler -c → linker
+
+### Interpreted language
+- -Slower performance due to overhead of interpretation, +Flexible development/ testing, +Platform independent
+- An interpreter directly executes source code line by line
+- Interprets each line into commands at runtime
+- Examples of interpreted languages are Python, JavaScript, Ruby, PHP
+
+### Makefile
+```
+CC=g++ # compiler
+CFLAGS=-Wall -g # compiler flags
+
+# Running `make` (no target) defaults to the first target, conventionally "all"
+all: bookstore
+
+bookstore: coffee.o book.o store.o # final binary depends on object files
+$(CC) $(CFLAGS) -o bookstore coffee.o book.o bookstore.o
+
+coffee.o: coffee.cpp coffee.h
+$(CC) $(CFLAGS) -c coffee.cpp # -c says not to run linker; so just creates .o file
+
+book.o: book.cpp book.h
+$(CC) $(CFLAGS) -c book.cpp
+
+store.o: store.cpp book.h coffee.h
+$(CC) $(CFLAGS) -c store.cpp
+
+$Makefile for dynamic linking
+randmain : randmain.o randcpuid.o
+	gcc $(CFLAGS) $^ -ldl -Wl,-rpath,. -o $@
+
+randlibhw.so : randlibhw.c
+	gcc $(CFLAGS) $^ -shared -fPIC -o $@
+
+randlibsw.so : randlibsw.c
+	gcc $(CFLAGS) $^ -shared -fPIC -o $@
+
+clean: # cleans generated build files
+rm -f coffee.o book.o bookstore.o bookstore
+```
+
+
 
 
 -------------------------------------------------------------
