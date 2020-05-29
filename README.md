@@ -7,7 +7,7 @@ system, practice working under Linux. The README contains most of the stuff. How
 * [Linux Basic](#linux-basic)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
-* [Patches, Compilation & Makefile](#Patches,-Compilation-&-Makefile)
+* [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
 * [Linking](#Linking)
 * [Git](#Git)
 
@@ -428,7 +428,7 @@ up(){			#Usage: up 2     cd .. cd ..
 - [Regex Test](https://regexr.com/)	
 
 ------------------------------------------------------------
-## Patches, Compilation & Makefile
+## Patches Compilation and Makefile
 Back to Content Tabble](#linux-enviroment-experiment)
 
 ### Diff and patches
