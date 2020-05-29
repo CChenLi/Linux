@@ -318,6 +318,54 @@ case "$Variable" in
     1) echo "There is a one.";;
     *) echo "It is not null.";;
 esac
+
+for i in {1..3}; do
+	echo "$i"
+done
+
+for ((i=1; i <=3; i++)); do
+	echo "$i"
+done
+
+while [ true ]
+do
+	echo "loop body here..."
+	break
+done
+
+greeting="hello world"       hello
+for word in $greeting; do    world
+	echo "${word}"
+done			   #IFS is internal Filed separator, default is SP
+
+cell="123-456-789"
+IFS='-'
+for num in $cell; do    123
+	echo ${num}     456
+done			789
+
+for i in $(seq 0 ${#greeting}); do    #each line is a character
+	echo "${greeting:i:1}"		#IFS='' not work
+done
+
+# Arrays
+fruit=("apple" "banana" "cherry")
+echo ${fruit[0]}     	#apple
+echo ${fruit[1]}	#banana
+echo ${fruit[@]}	#apple banana cherry
+echo ${fruit}		#apple
+for fruit in ${fruits[@]}; do
+	echo ${fruit}
+done
+
+declare -a hw		#declare an array hw
+hw[0]="hello"
+echo ${hw[@]}		#hello
+hw+=("world")		#appending
+echo ${hw[@]}		#hello world
+
+
+
 ```
 
 
