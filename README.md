@@ -6,6 +6,7 @@ system, practice working under Linux. The README contains most of the stuff. How
 ## Content
 * [Linux Basic](#linux-basic)
 	* [FILE Inode Link](#files)
+	* [Shell Command, Enviroment Variable and Emacs](#Using-Linux-with-a-shell)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
