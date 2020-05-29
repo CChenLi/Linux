@@ -5,9 +5,11 @@ system, practice working under Linux. The README contains most of the stuff. How
 ----------------
 ## Content
 * [Linux Basic](#linux-basic)
+	* [FILE Inode Link](#files)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
+* [C Basic](#c-basic)
 * [Linking](#Linking)
 * [Git Management Control](#Git)
 
@@ -36,6 +38,31 @@ Process are an instance of an executing program
 - Directoreis, executble programs, devices  
 - Hidden file start with a dot .ssh .profile
 
+### Metadata and Inodes
+- Every file is associated with descriptive info called metadata, including:
+	- File type (regular, dir,...)
+	- Link count, how many directory entries link to the file
+	- Permission,  which users can read, write, or execute a file 
+	- File owner
+	- File size (in Byte)
+	- Time of last access (read/execute), last modification (write), and change to inode
+	- Disk address of file contents
+- Inodes & directories
+	- Every file in the file system is associated with an inode, a data structure that stores its corresponding file's metadata
+	- Inodes are stored in an inode table, which is an array with all the files in the filesystem.
+	- Each inode has a unique inode number that is used to index into the table
+	- A directory is actually a file mapping filenames to inode numbers
+	- Inodes and directories work together to store metadata for every file
+	
+
+### Links
+- Hard links points directly to inode on dist, This means multiple files can map to the same inode
+- Symbolic(soft) links point to the path of the file
+- Create link
+	- Hard: `ln source link`
+	- Soft: `ln -s source link`
+
+
 ### Using Linux with a shell
 Shell is a interface where you can interact with Linux, bash, zsh
 
@@ -45,7 +72,16 @@ Shell is a interface where you can interact with Linux, bash, zsh
 - Absolute path, relative to root, start with /
 - Relative path, relative to current dir
 
-> Basic command
+### Essential Linux directories  
+Command | Definition
+------ | ---------
+/bin  | essential binaries (e.g. pwd, bash)
+/dev  | devices (and virtual ones like /dev/null)
+/home | users' home directories
+/tmp  | temporary files
+/usr  | user files and binaries (e.g. /usr/bin)
+
+### Basic command
 
 `echo $PATH`         default path for command devided by :  
 `pg1 2> pg2`    write stderr from pg1 to pg2  
@@ -70,37 +106,7 @@ export 可新增，修改或删除环境变量，供后续执行的程序使用�
 `export PATH=”$PATH:your path1:your path2 ...”`   
 **You can export in your ~/.profile file to do it every time you log in**  
 
-### Metadata and Inodes
-- Every file is associated with descriptive info called metadata, including:
-	- File type (regular, dir,...)
-	- Link count, how many directory entries link to the file
-	- Permission,  which users can read, write, or execute a file 
-	- File owner
-	- File size (in Byte)
-	- Time of last access (read/execute), last modification (write), and change to inode
-	- Disk address of file contents
-- Inodes & directories
-	- Every file in the file system is associated with an inode, a data structure that stores its corresponding file's metadata
-	- Inodes are stored in an inode table, which is an array with all the files in the filesystem.
-	- Each inode has a unique inode number that is used to index into the table
-	- A directory is actually a file mapping filenames to inode numbers
-	- Inodes and directories work together to store metadata for every file
-	
-### Essential Linux directories  
-Command | Definition
------- | ---------
-/bin  | essential binaries (e.g. pwd, bash)
-/dev  | devices (and virtual ones like /dev/null)
-/home | users' home directories
-/tmp  | temporary files
-/usr  | user files and binaries (e.g. /usr/bin)
 
-### Links
-- Hard links points directly to inode on dist, This means multiple files can map to the same inode
-- Symbolic(soft) links point to the path of the file
-- Create link
-	- Hard: `ln source link`
-	- Soft: `ln -s source link`
 
 ### Emacs basic
 Action | Command
@@ -560,7 +566,7 @@ typedef struct Point {
 Mypoint p1 = {1, 2};
 ```
 
-### Standaard IO
+### Standard IO
 - `printf("x is %d", x)` always to stdout
 - `fprintf(FILE *fptr, const char * format, ...);`
 	- Prints to a file using a file pointer (stdout, stderr, and stdin are defined in <stdio.h>)
@@ -584,6 +590,36 @@ int main(void){
 		putchar(c);
 }
 ```
+
+### Dynamic memory allocation
+- Four function in <stdlib.h>
+	- malloc() allocate
+	- free()   dellocate
+	- calloc() like malloc, but intialize to 0
+	- realloc  rellocate previous block with new size
+- Use pointer arithmetic or ptr[index] to access elements in block
+- malloc/free
+	- `ptr = (type *) malloc(number_of_bytes)`
+```
+char* letters; // Pointer for memory block
+int n = 5; // Number of array elements
+letters = (char *) malloc(n * sizeof(char));
+if (letters == NULL)// Check memory allocated correctly
+printf("Error allocating memory\n");
+free(letters); // Deallocate
+```
+- realloc
+	- `ptr = realloc(ptr, new_byte_number)`
+	- Address migth be different, but content of memory will be preserved
+```
+int *arr = (int *) malloc(sizeof(int) * 10);
+arr = realloc(arr, sizeof(int) * 100);
+```
+- Important notes
+	- malloc/realloc do not initialize memory, will contain garbage
+	- Forgetting to free causes a memory leak
+	- Double free (freeing same location twice) causes undefined behavior
+	- Use after free (access dangling pointer) also causes undefined behavior
 
 
 
