@@ -509,6 +509,86 @@ rm -f coffee.o book.o bookstore.o bookstore
 
 
 -------------------------------------------------------------
+## C basic
+[Back to Content Tabble](#linux-enviroment-experiment)
+
+### pointer and reference
+```
+int *ptr;
+int x = 77
+ptr = &x;
+*ptr++;
+
+void increment(int *num){ *num++; }
+int x = 10;
+increment(&x);
+
+#function pointer
+int add(int x, int y){ return x + y; }
+int main(void){
+	int (*add_fn_ptr)(int, int) = &add;
+	int sum = (*add_fn_ptr)(2, 3);
+}
+
+#qsort
+int compare(const void * a, const void * b){ //generic pointer type to fit qsort
+	return (*(int *)a - *(int *)b);    //cast to int pointer, then defference
+}
+int main(void){
+	int values[] = {40, 10, 100, 90, 20, 25};
+	qsort(values, 6, sizeof(int), compare);
+	for(int i = 0; i < 6; ++i){
+		printf("%d\n", values[i]);
+	}
+}
+```
+
+### Struct
+```
+struct Point {
+	int x;
+	int y;
+}
+struct Point p1 = {1, 2}; //Initialize (ordered)
+p1.x = 3;
+struct Point p3 = {.x = 5, .y = 6};   //alternative initialize
+
+typedef struct Point {
+	int x;
+	int y;
+} Mypoint;
+Mypoint p1 = {1, 2};
+```
+
+### Standaard IO
+- `printf("x is %d", x)` always to stdout
+- `fprintf(FILE *fptr, const char * format, ...);`
+	- Prints to a file using a file pointer (stdout, stderr, and stdin are defined in <stdio.h>)
+- `sprintf(char *str, const char *format, ...);`
+	- Prints to a string buffer (i.e. a char array)
+- `snprintf(char *str, size_t size, const char *format, ...);`
+	- Prints a maximum of size characters to string buffer (safer than sprintf) prevert buffer overflow
+```
+char buffer[50];
+sprintf(buffer, "Jack");
+fprintf(stdout, "Hello, %s\n", buffer);
+```
+
+- `getchar` `putchar` Functions to read/write a single character from stdin/stdout
+```
+#include <stdio.h>
+// implements cat: copies stdin to stdout
+int main(void){
+	char c;
+	while ((c = getchar()) != EOF) // EOF indicates end of file
+		putchar(c);
+}
+```
+
+
+
+
+-------------------------------------------------------------
 ## Linking
 [Back to Content Tabble](#linux-enviroment-experiment)
 
