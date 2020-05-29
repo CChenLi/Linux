@@ -5,6 +5,7 @@ topic. Focusing on topic, explore methods finish certain task. There is a lab lo
 
 ----------------
 ## Content
+* [Linux Basic](#linux-basic)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Linking](#Linking)
@@ -378,8 +379,9 @@ equal 5 "5"
 echo $?			#0 they are equal
 ```
 
-# Customize Command in ~/./profile
-`source filename` source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。该命令通常用命令“.”来替代
+### Customize Command in ~/./profile
+`source filename` source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。该命令通常用命令“.”来替代  
+`./profile` will execute everytime login  
 ```
 # ~/./profile
 up(){			#Usage: up 2     cd .. cd ..
