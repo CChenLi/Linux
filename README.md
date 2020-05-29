@@ -9,7 +9,7 @@ system, practice working under Linux. The README contains most of the stuff. How
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
 * [Linking](#Linking)
-* [Git](#Git)
+* [Git Management Control](#Git)
 
 ## Main topics
 
