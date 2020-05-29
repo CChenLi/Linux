@@ -100,16 +100,20 @@ Command | Definition
 - Create link
 	- Hard: `ln source link`
 	- Soft: `ln -s source link`
-	
-```flow
-st=>start: Symbolic link
-e=>end: Disk
-i=>start: Inode
-file=>start: File
-hl=>start: Hardlink
-st->file->i->e
-hl->i->e
-```
+
+### Emacs basic
+Action | Command
+-------|----------
+Exit | C-x C-c
+Undo | C-x u
+Save | C-x s
+Copy | M-w
+Cut('kill') | C-w
+Paste('Yank') | C-y
+Run shell Command | M-! COMMAND
+Compile | M-x compile
+Open dir | C-x d
+Cancel comand | C-g
 
 
 
@@ -333,7 +337,20 @@ esac
 - Basic regular expression(BRE): ? + {} () | are nomal, escape as metacharacter
 - Extended reuglar expression(ERE)
 
-
+### Exercise
+- match favorite or favourite
+	- `favorite|favourite`
+	- `favou?rite`
+- match variation of Google with 2-7 os
+	- `Go{2,7}gle`
+- match line where the last word ens in 'st' or 'de' and the line optitional end in punc
+	- `^.*(st|de)[\.,';]?$`
+	- `[(st)(de)] is invalid`
+- match binary string of 00111, 001 even 0 odd 1
+	- `^(00)*1(11)*$`
+- match line that is exactly an int with an optitional leading + or -
+	- `^[+-]?(0|([1-9][[:digit:]]*))$`
+- [Regex Test](https://regexr.com/)	
 
 
 
