@@ -86,6 +86,8 @@ export 可新增，修改或删除环境变量，供后续执行的程序使用�
 	- Inodes and directories work together to store metadata for every file
 	
 ### Essential Linux directories  
+Command | Definition
+------ | ---------
 /bin  | essential binaries (e.g. pwd, bash)
 /dev  | devices (and virtual ones like /dev/null)
 /home | users' home directories
