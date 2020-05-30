@@ -1,4 +1,4 @@
-# Linux Class Note
+# Linux Enviroment Experiment
 *This my class note for CS35L UCLA. The main purpose of this project is to construct enviroment under Linux 
 system, practice working under Linux. The README contains most of the stuff. However, more detail are in the log file in each subdirectories.*
 
