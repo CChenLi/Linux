@@ -12,8 +12,13 @@ system, practice working under Linux. The README contains most of the stuff. How
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
 * [C Basic](#c-basic)
+* [System Call Programming](#System-Call-Programming)
+	* [Kernel and syscall](#kernel)
+	* [Buffered vs. Unbuffered I/O](#Buffed-Unbuffered-IO)
+	* [System call Commands](#System-call-Commands)
 * [Linking](#Linking)
 * [Git Management Control](#Git)
+* [Acknowledgments](#Acknowledgments)
 
 ## Main topics
 
@@ -669,6 +674,102 @@ arr = realloc(arr, sizeof(int) * 100);
 	- Double free (freeing same location twice) causes undefined behavior
 	- Use after free (access dangling pointer) also causes undefined behavior
 
+------------------------------------------------------------
+## System Call Programming
+[Back to Content Tabble](#linux-enviroment-experiment)
+
+### Kernel 
+- A kernel is a program that serves as the core of the OS
+- Has complete control over system and provides services to control CPU, Ememory, processes, disk, I/O
+- On computer boot up, the kernel is the first program loaded into memory
+- If the kernel crashes, the whole computer crashes too!
+- Funtion
+	- Memory Management – Keeps track of memory locations, and how much memory is being used to store what
+	- Process Management and Scheduling – Determine what processes can use the CPU, when, and for how long
+	- Device Drivers – Acts as the interpreter between hardware and software
+- Kernel vs. user mode
+	- Kernel Mode 0, User Mode 1 
+	- CPU has two processor modes: user & kernel mode. A mode bit toggles execution between the two modes.
+	- Memory is divided into kernel space and user space, specifying where kernel mode and user mode instructions are executed in
+	- Privileged instructions
+		- Execute any instruction available in hardware
+		- Perform I/O or disk operations
+		- Access entire memory space
+		- Run other critical tasks
+	- All other programs run in user mode, which has fewer privileges
+		- Limited access to memory: prevents programs from overwriting each other’s memory
+		- Buggy programs won't crash the entire computer (since a crash in kernel mode would)
+
+### System calls
+- User programs can use system calls to request the kernel to perform privileged operations on their behalf
+- If the OS allows the system call, it causes a trap, which interrupts the user process and switches to kernel mode
+- The kernel executes the system call, and afterwards, switches back to user mode to continue execution
+- Switching modes for a system call incurs overhead
+
+### Commands set1
+- `strace ./program`  Intercepts and prints out system calls to stderr or to an output file
+	-  `strace –o strace_output ./my_program`
+	-  `strace -c` prints out a more readable summary report
+- Use functions in <unistd.h> which are wrappers around system call implementations by glibc
+	- `write(1, "Hello world!\n", 14)` write 14 byte to 1(stdout)
+- Use syscall() in <sys/syscall.h> with the system call number
+	- System call numbers can be viewed in /usr/include/asm/unistd_64.h
+	- `syscall(SYS_write, 1, "Hello world!\n", 14)`  SYS_write is #define as 1, the syscall number, 1 is stdout
+- Write the assembly instructions
+
+## Buffed Unbuffered IO
+- Every system call incurs overhead, requiring a switch from user mode, to kernel mode, and back to user mode
+- For I/O like reading or writing to disk, we should buffer operations to reduce system calls and improve performance
+- Unbuffered I/O issues a system call for each byte read/written
+- Buffered I/O collects as many bytes as possible in a buffer (for read or write) and then makes one system call
+- Buffered operations are more efficient, while unbuffered operations are instantaneous
+
+- `time COMMAND` of `time ./PROGRAM`
+	- Outputs real, user, and sys timing statistics
+	- real: elapsed time as read from a wall clock
+	- user: CPU time spent in user-mode code (outside the kernel) within the process
+	- sys: CPU time spent in the kernel within the process (i.e., system calls)
+
+### Buffered/unbuffered behavior in Linux
+- stdout is usually line buffered by default. We assume there is a large amount of data going through, and it can wait momentarily until a buffer is collected.
+	- Line buffered means we output the buffer at an \n character
+	- `fflush(File *stream)` — forces a write of all buffered data
+- stderr is unbuffered by default. We assume errors are infrequent, but we want to know about them immediately.
+
+### Library calls
+- Library calls abstract the implementation of making the system calls
+- For example, putchar and printf are library calls that perform privileged operations like printing to the screen using system calls
+- Typically more efficient, since they optimize the number of system calls made, e.g., by using buffered I/O
+	- fopen() is a library call and uses buffered I/O
+	- open() is a system call and uses unbuffered I/O
+	
+### Types of system calls
+- Process control – need to alter process execution of a running program
+- File management – create/delete/read/write to files
+- Device management – manipulate peripherals
+- Information management – retrieve information from OS like time/date
+- Communication – create interprocess communication channels
+
+### System call Commands
+```
+#include <unistd.h>
+
+pid_t getpid(void) // returns the process id of the calling process
+
+int dup(int fd) // duplicates a file descriptor fd
+
+int fstat(int fd, struct stat *buf) // Returns information about the file with the descriptor fd into buf
+
+ssize_t read(int fd, void *buffer, size_t n) // read n number of bytes from file described by fd to buffer
+
+ssize_t write(int fd, void *buffer, size_t n) // write n number of bytes from file described by fd to buffer
+
+int open(const char *pathname, int flags) // given a pathname for a file, returns a file descriptor (int)
+
+int close(int fd) // closes given file descriptor
+
+```
+	
 
 
 
