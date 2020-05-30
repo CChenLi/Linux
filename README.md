@@ -7,6 +7,7 @@ system, practice working under Linux. The README contains most of the stuff. How
 * [Linux Basic](#linux-basic)
 	* [FILE Inode Link](#files)
 	* [Shell Command, Enviroment Variable and Emacs](#Using-Linux-with-a-shell)
+	* [Emacs GDB Valgrind](#Emacs-basic)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
 * [Shell Scripts and Regular Expression](#Shell-Scripts-and-Regular-Expression)
 * [Patches, Compilation & Makefile](#Patches-Compilation-and-Makefile)
@@ -122,6 +123,52 @@ Run shell Command | M-! COMMAND
 Compile | M-x compile
 Open dir | C-x d
 Cancel comand | C-g
+
+### GDB
+
+Compile with -g flag
+`(gdb)` prompt  
+`(gdb) run arg1 --arg2`  run
+
+> Breakpoint
+
+When you reach the breakpoint, the line is not executed yet
+
+`(gdb) break file.c:6`  This sets a breakpoint at line 6 of file.c.
+`(gdb) break my_func`  This sets a breakpoint that pauses execution anytime my_func is called.  
+`(gdb) break my_func if expression`  Pause at my_func only when expression is true  
+`(gdb) info break`  List breakpoints  
+`(gdb) delete`  Delete all breakpoints  
+`(gdb) delete 3`  Delete 3rd breakpoint  
+`(gdb) clear my_function`  Clear breakpoint at my_function  
+`(gdb) clear 6`  Clear breakpoint at line 6  
+`(gdb) clear file.c:6`  Clear breakpoint at line 6 in file.c
+
+> Once you hit a breakpoint, you can control how to continue execution
+
+`(gdb) continue`  Continue execution until the next breakpoint.  
+`(gdb) step [n]`  Step to next [n] line(s) of code. Steps into functions.  
+`(gdb) next [n]`  Same as step, but won't step into functions.  
+ `<Enter>`   repeats the last command you typed in GDB  
+ 
+ `(gdb) print var`  Prints the value of var.  
+ `(gdb) watch var`  Create watchpoint that pauses execution when var value changes
+
+> Analyzing the program
+
+`(gdb) info frame`  Displays info about current stack frame, such as return address and register values.  
+`(gdb) info local`  List local variables and values of the function for the current stack frame.  
+`(gdb) info args`  List arguments for the current function call.  
+`(gdb) list [line/function]`  List 10 centered around line or function  
+
+> Change variable value in current session
+
+`(gdb) print answer = 1` set the value of local variable answer to 1 in current gdb session   
+`(gdb) print sizeof(arr)`  run c code with gdb   
+
+### Valgrind
+- `valgrind ./file`  
+- `valgrind --leak-check=full ./file`  to show more detail  
 
 
 
