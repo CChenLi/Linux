@@ -1,5 +1,5 @@
 # Linux Enviroment Experiment
-*This my class note for CS35L UCLA, instructed by Paul Eggert and Ritam Sarmah. The main purpose of this project is to construct enviroment under Linux 
+*This my class note for CS35L, instructed by Paul Eggert and Ritam Sarmah, at UCLA. The main purpose of this project is to construct enviroment under Linux 
 system, practice working under Linux. The README contains most of the topics. More details are in the log files of each subdirectories.*
 
 ----------------
