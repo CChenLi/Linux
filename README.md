@@ -18,7 +18,7 @@ system, practice working under Linux. The README contains most of the topics. Mo
 	* [System call Commands](#System-call-Commands)
 * [Linking](#Linking)
 * [Git Management Control](#Git)
-	* [Basic](What-is-Git)
+	* [Basic](#What-is-Git)
 	* [Git workflow and Commands](#Git-workflow)
 	* [Branches](#Branches)
 	* [Referencing commits](#Referencing-commits)
@@ -1026,7 +1026,7 @@ git diff
 ### Ancestry references
 ![caret](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/caret.png)
 ![tilde](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/tilde.png)
-![carettile](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/carettile.png)
+![carettile](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/carettilde.png)
 
 ### git format-patch
 - Create a patch for one or more commits in a branch
@@ -1054,12 +1054,12 @@ git diff
 
 - `.git/hooks` script that will run after each commit, you can put test in it
 
-Git + Graphs
+### Git Graphs
 - directed graph, directed acyclic graph(DAG)
 - git commit history can be represented as a DAG
 
-Topological sorting   parent apears before child
-- modified depth-first-search
+- Topological sorting   parent apears before child
+	- modified depth-first-search
 
 	
 
