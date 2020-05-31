@@ -99,6 +99,8 @@ Command | Definition
 `C-u` delete all text behind cursor  
 `ps` list current funning process  
 `kill PID` kill process  
+`du` displays the amount of file space used by the specified files or directories  
+
 
 > Enviroment variables
 
@@ -841,6 +843,32 @@ void to_run_after(void){
 -------------------------------------------------------------
 ## Git
 [Back to Content Tabble](#linux-enviroment-experiment)
+
+### What is Git
+- Git is a version control program that tracks file changes
+- Creates snapshots of the files in our project, and allows us to view and recover those changes
+- Why do we use it?
+	- Save history of file changes without creating copies (main_finalfinal7.c)
+	- Coordinate simultaneous work on files among multiple people
+	- [Usefull guide](https://rogerdudler.github.io/git-guide/) 
+
+### Local remote repositories
+- Git has two repository types: local and remote
+- The local repo lives on your computer, for your direct use
+- The remote repo lives elsewhere (like a server), for your indirect use
+	- Acts as central codebase, allowing multiple people to access it
+- After making changes in local repo, you push changes to remote
+- To keep your local repo up to date with the remote repo, you'll need to pull changes (for example, when working on a team)
+
+### Basic of Git
+
+### Git workflow
+- Working directory holds the actual files and current changes made
+- Staging area (index) keeps files with changes that we want to commit
+	- A commit is a snapshot of the state of our code
+- Local repository contains a record of all the commits
+![Git Workflow](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitworkflow.png)
+
 
 
 	SSH keys with github: week2
