@@ -867,7 +867,54 @@ void to_run_after(void){
 - Staging area (index) keeps files with changes that we want to commit
 	- A commit is a snapshot of the state of our code
 - Local repository contains a record of all the commits
+- `git checkout <commit>` change status(files...) into status recorded by <commit>  
 ![Git Workflow](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitworkflow.png)
+	
+### Repository work
+
+```
+git init
+git add READNE.md
+git commit -m "first commit"
+git remote add origin URL
+git push -u origin master
+```
+
+
+- `git init`
+	- Initializes a directory as a local git repository, current directory
+	- All files in current directory and in subdirectories can be tracked by git
+	- Adds hidden folder .git to root of the current directory
+- git clone URL
+	- Copy an existing repository
+	- Typically used to copy remote repos to your local machine
+
+- `git status`
+	- Modified files are being tracked by git, and have been modified since the last commit
+	- Untracked files are not being tracked in git / files new created, will be tracked when you commit them
+	- Staged files are ready to be committed
+	- [Illustritive Example](https://www.cs.swarthmore.edu/git/git-status.php)
+- `git add <file>` Move files with changes to the staging area
+- `git rm <file>` Remove files from the staging area
+- `git commit` Creates a new commit finalizing all the changes in the staged area 
+	- A commit records a snapshot with certain changes to the repository
+	- Doesn't snapshot files that don't have changes
+	- Each commit has a unique ID (SHA-1 Hash)
+	- You can also use any unambiguous prefix (at least 4 characters long)
+	- `git commit -m "<message>"` "Make xyzzy do frotz" or "Add file"
+- `git log` show commit history
+	- `git log --stat` show stats on file changes
+	- `git log -p` show full detail on each commit change with diff format, can really see diff each line of src
+	- `git log --pretty=oneline` condense git log output to one line with just hash (SHA-1 hash)
+- `git push <remot> <branch>` 
+	- Updates the <remote>'s <branch> with the local <branch>
+		- e.g. `git push origin master`
+- `git remote add <name> <server>` If you have not cloned an existing repository and want to connect to a
+remote server, origin is the common default name for the remote repository
+- `git fetch <remote>` retrieves info about any remote file changes 
+- `git pull` retrieves info and copies the changes, combine with current snapshot, Essentially does a git fetch and git merge
+
+![Git Workflow](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitworkflow2.png)
 
 
 
