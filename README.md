@@ -18,6 +18,11 @@ system, practice working under Linux. The README contains most of the topics. Mo
 	* [System call Commands](#System-call-Commands)
 * [Linking](#Linking)
 * [Git Management Control](#Git)
+	* [Basic](What-is-Git)
+	* [Git workflow and Commands](#Git-workflow)
+	* [Branches](#Branches)
+	* [Referencing commits](#Referencing-commits)
+	* [Format-patch and .git](#git-format-patch)
 * [Acknowledgments](#Acknowledgments)
 
 ## Main topics
@@ -877,7 +882,8 @@ git init
 git add READNE.md
 git commit -m "first commit"
 git remote add origin URL
-git push -u origin master
+git push -u origin master     #if git push, shows "current breach master has no upstream branch"
+				git branch -u origin/master      current branch track origin/master
 ```
 
 
@@ -907,7 +913,7 @@ git push -u origin master
 	- `git log -p` show full detail on each commit change with diff format, can really see diff each line of src
 	- `git log --pretty=oneline` condense git log output to one line with just hash (SHA-1 hash)
 - `git push <remot> <branch>` 
-	- Updates the <remote>'s <branch> with the local <branch>
+	- Updates the `<remote>'s <branch>` with the local `<branch>`
 		- e.g. `git push origin master`
 - `git remote add <name> <server>` If you have not cloned an existing repository and want to connect to a
 remote server, origin is the common default name for the remote repository
@@ -918,57 +924,135 @@ remote server, origin is the common default name for the remote repository
 
 
 
-	SSH keys with github: week2
-setting->SSH and GPG keys->new ssh key->
-~/./ssh/id
+### SSH keys with github
+setting->SSH and GPG keys->new ssh key < car ~/.ssh/id_ras.pub
 
-### Branches:
 
-HEAD point to our currently active head
-git checkout <name>    more HEAD to branch
-git checkout -b
-git branch -vv         show all branches
-upstream???
+### Branches
 
-Three way merge
-fast-forward merge
+- Branches are used to develop features isolated from each other
+- The master branch is the default main branch
+- Use other branches for developing features, bug fixes, experiments, and merge them back to the master branch upon completion
 
-git merge <branch>     joins brance into current checked-out branch
-merge conflicts, happen in three way merge,two branch have different copy of the same file
+- HEAD Pointer
+	- A head is a named reference to a commit object. So a branch is really a head pointing to the tip of a history of commits.
+	- The HEAD pointer points to our currently active head
+	- A detached HEAD occurs when HEAD points directly to a commit rather than a branch
+	- By default, there is a head in every repository called master. HEAD starts by pointing at the latest commit in master
 
-git rebase <branch>
-git checkout feature     rebase feature onto master
-git rebase master		 
-git checkout master      after rebase, get master to lattest commit
-git merge feature
-
-Referencing commits
-we can refer to any single commit butots 40-char SHA-1 hash /check ppt
-
-commit range:
-double dot   
-triple dot   XOR
-
-Ancestry references
-- caret(^) after a commit ref resolves to a parent commit
-	 include a number after if get a different parent at a fork history
-- tilde(~) after a commit ref resolve to 1st parent of commit
-	including a number after it gets older generation in commit history
+- `git branch`
+	- `git branch <name>`
+		- Creates a new branch called `<name>` pointing to the current commit  
+		- Creating a branch doesn't change the history or create a new commit  
+	- `git branch -d <branch>` Deletes a specified branch
+	- `git branch -m <branch>` Rename current current to <branch>
 	
-`git format-patch -n <object>`
-	* n specifies how many commit should be included in to the patch
-	* <object>  can be a single commit or range
-	* by default print the patch filename, `--stdout` prints patch contents
-	* apply the patch to your working directory using git am < file.patch
-									     
-.git directory
-- `cd .git`
-- `ls`
-- .git/objects/ store commit,tree,blob as subfolder
-- .git/refs   .git/HEAD file is a symbolic ref to our current ref
-- .git/indx   a binary ifle that act as the staging area(also called index)
-	`git ls-files --stage` 
-- .git/log	
+- `git checkout <name>` Checks out (or switches) to the branch, by moving the HEAD pointer to it
+	- You can checkout specific commits using their hash as well. If the commit is not being pointed to by a branch, it'll result in a detached HEAD
+- `git checkout -b <name>` Quickly create a branch and check it out
+- Track Branches
+	- A tracking branch is a local branch that is connected to a remote branch, called the upstream branch
+	- When you do git push or pull from the tracking branch, Git knows to push to and pull from the remote branch
+	- `git checkout -b <local> <remote>/<branch>` Creates a local branch `<local>` that will be copied from and track `<remote>/<branch>`
+	- `git checkout <branch>` will automatically create a tracking branch for you if the branch name you try to checkout (a) doesn't exist locally and (b) exactly matches a remote branch name
+	- `git branch -u <upstream> <local>` makes an existing local branch track a remote upstream branch
+	- `git branch -vv`  displays which branches are tracked and which are not
+	- `git push -u <remote> <branch>` Pushes to the remote branch and sets it as the upstream branch for the current local branch. We tend to do this the first time we push from a local branch to remote.
+		- Equivalent to `git push origin master` then `git branch -u master origin/master` 
+
+### Combining Branches
+
+> Three way merge
+- `git merge <branch>`  joins the branch specified into the current checked-out branch
+	- Merge conflicts happen when merging branches have different changes to the same part of the file and Git doesn't know which version to keep You'll need to resolve this manually (git mergetool)
+	- Uses three commits to generate the merge commit: the two branch tips and their common ancestor
+
+> Fast forward merge
+![Git rebase](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitrebase.png)
+- Instead of actually merging the branches to combine histories, Git moves (i.e. “fast forward”) the current branch tip up to the target branch tip
+- A fast-forward merge can occur when there is a linear path from the current branch tip to the target branch
+- A fast-forward is not possible if the two branches have diverged
+
+### Merge conflict
+- If two branches being merged both changed the same part of the same file, Git can't figure out which version to use, causing a merge conflict
+- In this situation, Git will stop the merge and edit the files to have visual indicators that mark both sides of the conflicted content
+- After you manually select what to keep for each conflict, stage and commit to conflicted files to finish the merge
+- Merge conflicts only occur in 3-way merges, not fast-forward merges
+- [Solve merge conflict](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
+![Example](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/mergeconflict.png)
+
+
+
+
+
+### Git data model
+
+![model1](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitdata1.png)  
+![model2](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/gitdata2.png)
+
+### Others
+- Tags are heads (a pointer to commits in Git history) used for a marked version release (e.g., v1.0.1)
+- `git tag` list all the current tags
+- `git tag -a <tag> -m "message"` create an annotated tag
+
+git stash
+	- Stash the changes in a dirty working directory away
+	- View stashes using `git stash list`
+	- To re-apply an older stash, use `git stash apply stash@{#}` where # is the number of the stash as shown in the stash list
+	- This is useful if you have some in-progress work in one branch that's not ready for staging, and you need to switch to another branch quickly
+	
+git diff
+	- Show all current changes in diff file format on any Git data source: commits, branches, files, etc.
+
+.gitignore A gitignore file is a list of file paths that won't show up as untracked files and won't participate in version control unless you force them to, Supports wildcards for matching sets of files (e.g. \*.txt)
+
+## Advanced Git
+
+### Referencing commits
+- We can refer to any single commit by its full, 40-character SHA-1 hash, or by an unambiguous prefix of the hash that's at least four characters long
+- We can also use a branch name to refer to the latest commit in the branch
+- Here are 4 different ways to inspect the same commit using `git show` assuming the hash is for the commit at the head of a branch, feature
+	- `git show 1c002dd4b536e7479fe34593e72e6c6c1819e53b`
+	- `git show 1c002dd4b536e7479f`
+	- `git show 1c002d`
+	- `git show feature`
+	
+### Commit ranges: double dot
+![doubledot](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/doubledot.png)
+
+### Commit range: triple dot
+![tripledot](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/tripledot.png)
+
+### Ancestry references
+![caret](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/caret.png)
+![tilde](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/tilde.png)
+![carettile](https://github.com/CChenLi/Linux/blob/master/Basic%26Emacs/carettile.png)
+
+### git format-patch
+- Create a patch for one or more commits in a branch
+- `git format-patch -n <object>`
+	- n specifies how many commits should be included into the patch
+	- `<object>` can be a single commit or range
+- By default prints the patch filename, but --stdout prints patch contents
+- `git am < file.patch` Apply the patch to your working directory
+- [Reference](https://blog.csdn.net/liuhaomatou/article/details/54410361)
+
+### .git directory
+- Git stores all of its info in a hidden directory .git at the root of your project
+- `.git/objects/`
+	- Git compresses and stores all objects in the .git/objects/ directory, indexing them by a hash prefix into subfolders
+	- In their compressed form, there's no way to tell which object is a commit vs. blob vs. tree, unless we have a named reference to the object (e.g., branch, tag)
+- `.git/refs/`
+	- Stores all references (refs), including local & remote tracking branches, stashes, tags
+	- A ref is stored as a file containing a commit hash. The filename is just the ref's name, used to reference that commit
+	- master branch's ref is located at `.git/refs/heads/master`
+	- `cat .git/refs/heads/master` 487e009ed7294021dcc0b66c2b5a5046aea51ab4
+	- A symbolic ref is a file containing a reference to another ref (similar to a symbolic link)
+		- `cat .git/HEAD` ref: refs/heads/quote
+- `.git/index` A binary file that acts as the staging area (also often called the index)
+	-  `git ls-files --stage`  see what's stored in the index file: a sorted list of the path names, each with permissions and the SHA1 of a blob object
+
+- `.git/hooks` script that will run after each commit, you can put test in it
 
 Git + Graphs
 - directed graph, directed acyclic graph(DAG)
@@ -978,19 +1062,6 @@ Topological sorting   parent apears before child
 - modified depth-first-search
 
 	
-### Git Data Model:
-
-commit object point to tree point to two blobs
-
-### Other:
-
-tag: head, a pointer to commits in git history
-git tag       			view all tags 
-git stash list
-git stash apply
-git apply
-./gitignore 			file that you don't want to track, like intermediate files
-
 
 
 
