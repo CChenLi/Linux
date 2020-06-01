@@ -5,7 +5,7 @@ system, practice working under Linux. The README contains most of the topics. Mo
 ----------------
 ## Content
 * [Linux Basic](#linux-basic)
-	* [FILE Inode Link](#files)
+	* [FILE Inode Link](#Metadata-and-Inodes)
 	* [Shell Command, Enviroment Variable and Emacs](#Using-Linux-with-a-shell)
 	* [Emacs GDB Valgrind](#Emacs-basic)
 * [Encryption and SSH](#Encryption-and-SSH-secure-shell)
