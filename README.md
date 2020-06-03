@@ -788,20 +788,20 @@ int close(int fd) // closes given file descriptor
 
 ### Static:  
 
-`gcc -c add.c -o libadd.o`  
-`ar rcs libadd.a libadd.o`  
-`gcc -c main.c -o main.o`  
-`gcc main.o libadd.o`  
+- `gcc -c add.c -o libadd.o`  
+- `ar rcs libadd.a libadd.o`  
+- `gcc -c main.c -o main.o`  
+- `gcc main.o libadd.o`  
 
 ### Dynamic:  
 
-`gcc -fPIC -c add.c  
-`gcc -shared -Wl,-soname,libadd.so.1 -o libadd.so.1.0 add.o`  
-`ln -sf libadd.so.1.0 libadd.so.1`	soname  
-`ln -sf libadd.so.1 libadd.so`        link name  
-`gcc -c main.c -o main.o`  
-`gcc main.o -L. -Wl,-rpath,. -ladd`  
-`ldd a.out	show dynamic library included`  
+- `gcc -fPIC -c add.c`
+- `gcc -shared -Wl,-soname,libadd.so.1 -o libadd.so.1.0 add.o`  
+- `ln -sf libadd.so.1.0 libadd.so.1`	soname  
+- `ln -sf libadd.so.1 libadd.so`        link name  
+- `gcc -c main.c -o main.o`  
+- `gcc main.o -L. -Wl,-rpath,. -ladd`  
+- `ldd a.out	show dynamic library included`  
 
 > Dynamic loading: Works with shared library
 
